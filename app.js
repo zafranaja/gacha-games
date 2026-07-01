@@ -313,6 +313,20 @@ const State = {
   gachaMissionGoal: 10,
   gachaMissionReward: 100,
   gachaMissionProgress: 0,
+  exchangeMissionGoal: 3,
+  exchangeMissionRewardTable: {
+    3: 1000,
+    6: 2000,
+    9: 3000,
+    12: 4000,
+    15: 5000,
+    18: 6000,
+    21: 7000,
+    24: 8000,
+    27: 9000,
+    30: 10000
+  },
+  exchangeMissionProgress: 0,
 
   init() {
     // Load state from localStorage
@@ -352,6 +366,13 @@ const State = {
       this.saveMissionProgress();
     }
 
+    if (localStorage.getItem('gacha_exchange_mission_progress') !== null) {
+      this.exchangeMissionProgress = parseInt(localStorage.getItem('gacha_exchange_mission_progress'));
+    } else {
+      this.exchangeMissionProgress = 0;
+      this.saveExchangeMissionProgress();
+    }
+
     this.processOfflineEarnings(now);
   },
 
@@ -369,6 +390,10 @@ const State = {
 
   saveMissionProgress() {
     localStorage.setItem('gacha_mission_progress', this.gachaMissionProgress.toString());
+  },
+
+  saveExchangeMissionProgress() {
+    localStorage.setItem('gacha_exchange_mission_progress', this.exchangeMissionProgress.toString());
   },
 
   addTokens(amount) {
@@ -412,11 +437,21 @@ const State = {
       delete this.collection[animalId];
     }
 
-    this.tokens += 500;
+    this.exchangeMissionProgress += 1;
+    const reward = this.exchangeMissionRewardTable[this.exchangeMissionProgress];
+    if (reward) {
+      this.tokens += reward;
+      UI.showToast(`Misi tukar kartu tercapai! Kamu mendapat +${reward} Token.`, 'success');
+    } else {
+      this.tokens += 500;
+    }
+
     this.saveCollection();
     this.saveTokens();
+    this.saveExchangeMissionProgress();
     UI.updateTokenDisplay(true);
     UI.renderCollection();
+    UI.updateExchangeMissionDisplay();
     return true;
   },
 
@@ -479,6 +514,7 @@ const UI = {
     SoundEffect.setEnabled(false);
     this.updateTokenDisplay(false);
     this.updateMissionDisplay();
+    this.updateExchangeMissionDisplay();
     this.updateMusicButtonState(false);
     this.startClaimTimer();
     this.renderCollection();
@@ -675,6 +711,26 @@ const UI = {
     button.innerHTML = isPlaying
       ? '<span>🎵</span> Musik: Nyala'
       : '<span>🔈</span> Musik: Mati';
+  },
+
+  updateExchangeMissionDisplay() {
+    const fill = document.getElementById('exchange-mission-progress-fill');
+    const text = document.getElementById('exchange-mission-progress-text');
+    const counter = document.getElementById('exchange-mission-count');
+    const target = 30;
+
+    if (fill) {
+      const progressPercent = Math.min((State.exchangeMissionProgress / target) * 100, 100);
+      fill.style.width = `${progressPercent}%`;
+    }
+
+    if (text) {
+      text.textContent = `Tukar kartu: ${State.exchangeMissionProgress}/${target}`;
+    }
+
+    if (counter) {
+      counter.textContent = `${State.exchangeMissionProgress}/${target}`;
+    }
   },
 
   startClaimTimer() {

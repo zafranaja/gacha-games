@@ -432,6 +432,11 @@ header {
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
 }
 
+.exchange-mission-card {
+  margin-top: 12px;
+  border-color: rgba(251, 191, 36, 0.24);
+}
+
 .mission-card-header {
   display: flex;
   justify-content: space-between;
