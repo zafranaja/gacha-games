@@ -6,6 +6,9 @@ const animals = [
   { id: 'kelinci', name: 'Kelinci Anggora', emoji: '🐰', rarity: 'biasa', desc: 'Memiliki bulu super lembut dan suka melompat mencari wortel segar.', height: '20 cm', weight: '2 kg' },
   { id: 'ayam', name: 'Ayam Jago', emoji: '🐔', rarity: 'biasa', desc: 'Alarm alami di pagi hari. Berkokok kencang saat matahari terbit.', height: '40 cm', weight: '3 kg' },
   { id: 'bebek', name: 'Bebek Kuning', emoji: '🦆', rarity: 'biasa', desc: 'Bisa berenang dan berjalan berbaris dengan rapi bersama kawanannya.', height: '30 cm', weight: '2.5 kg' },
+  { id: 'tupai', name: 'Tupai Pohon', emoji: '🐿️', rarity: 'biasa', desc: 'Lincah berayun dari dahan ke dahan sambil menyimpan cadangan kacang.', height: '20 cm', weight: '1 kg' },
+  { id: 'kura_kura', name: 'Kura-kura Hutan', emoji: '🐢', rarity: 'biasa', desc: 'Tenang dan sabar, sering membawa rumahnya kemanapun ia pergi.', height: '15 cm', weight: '5 kg' },
+  { id: 'domba', name: 'Domba Lembut', emoji: '🐑', rarity: 'biasa', desc: 'Menggembala dengan tenang dan memiliki bulu yang hangat seperti kapas.', height: '70 cm', weight: '35 kg' },
 
   // Langka (Rare) - 24%
   { id: 'panda', name: 'Panda Raksasa', emoji: '🐼', rarity: 'langka', desc: 'Menghabiskan 12 jam sehari hanya untuk mengunyah bambu segar.', height: '1.2 m', weight: '100 kg' },
@@ -13,18 +16,27 @@ const animals = [
   { id: 'serigala', name: 'Serigala Abu', emoji: '🐺', rarity: 'langka', desc: 'Pemimpin kawanan yang setia dengan lolongan malam yang misterius.', height: '80 cm', weight: '45 kg' },
   { id: 'rubah', name: 'Rubah Merah', emoji: '🦊', rarity: 'langka', desc: 'Sangat cerdik dan memiliki telinga super sensitif untuk berburu.', height: '35 cm', weight: '6 kg' },
   { id: 'burung_hantu', name: 'Burung Hantu Salju', emoji: '🦉', rarity: 'langka', desc: 'Penjaga malam yang tenang dengan mata bulat besar yang mampu melihat kegelapan.', height: '45 cm', weight: '2 kg' },
+  { id: 'alpaka', name: 'Alpaka Andes', emoji: '🦙', rarity: 'langka', desc: 'Pemilik bulu panjang yang nyaman dan lincah di pegunungan bersalju.', height: '90 cm', weight: '65 kg' },
+  { id: 'penguin', name: 'Penguin Raja', emoji: '🐧', rarity: 'langka', desc: 'Berjalan tegap dan berenang dengan elegan di lautan dingin.', height: '90 cm', weight: '15 kg' },
+  { id: 'bison', name: 'Bison Prairie', emoji: '🦬', rarity: 'langka', desc: 'Hewan kuat yang menjaga kawanan dengan langkah mantap di padang luas.', height: '2 m', weight: '700 kg' },
 
   // Legendaris (Legendary) - 10%
   { id: 'harimau', name: 'Harimau Sumatra', emoji: '🐯', rarity: 'legendaris', desc: 'Raja hutan sejati yang gagah berani. Salah satu harimau paling langka di bumi.', height: '95 cm', weight: '120 kg' },
   { id: 'cendrawasih', name: 'Burung Cendrawasih', emoji: '🐦', rarity: 'legendaris', desc: 'Burung dari surga dengan tarian indah dan warna bulu yang memukau.', height: '30 cm', weight: '0.5 kg' },
   { id: 'komodo', name: 'Komodo Purba', emoji: '🦎', rarity: 'legendaris', desc: 'Kadal raksasa purba asli Indonesia dengan gigitan berbisa mematikan.', height: '3 m', weight: '70 kg' },
   { id: 'singa_gading', name: 'Singa Gading', emoji: '🦁', rarity: 'legendaris', desc: 'Simbol kepemimpinan dan keberanian yang berwibawa di padang rumput.', height: '1.2 m', weight: '190 kg' },
+  { id: 'griffin', name: 'Griffin Langit', emoji: '🦅', rarity: 'legendaris', desc: 'Makhluk agung dengan sayap kuat dan mata tajam yang mengawasi angkasa.', height: '1.5 m', weight: '120 kg' },
+  { id: 'drake_es', name: 'Drake Es', emoji: '🐉', rarity: 'legendaris', desc: 'Naga kecil yang menghirup udara dingin dan menyimpan kekuatan es.', height: '2.5 m', weight: '180 kg' },
+  { id: 'ikan_mahkota', name: 'Ikan Mahkota', emoji: '🐠', rarity: 'legendaris', desc: 'Ikan berkilau dengan sisik seperti mahkota kerajaan di dasar laut.', height: '60 cm', weight: '8 kg' },
 
   // Rahasia (Secret) - 1%
   { id: 'unicorn', name: 'Stardust Unicorn', emoji: '🦄', rarity: 'rahasia', desc: 'Kuda bertanduk mistis yang meninggalkan jejak debu bintang di angkasa.', height: '1.6 m', weight: '350 kg' },
   { id: 'phoenix', name: 'Astral Phoenix', emoji: '🔥', rarity: 'rahasia', desc: 'Burung api abadi yang lahir kembali dari abu pembakarannya sendiri.', height: '1.5 m', weight: '80 kg' },
   { id: 'naga_emas', name: 'Naga Emas Kaisar', emoji: '🐉', rarity: 'rahasia', desc: 'Makhluk mitologi penjaga harta karun suci dengan sisik emas berkilau.', height: '15 m', weight: '2.5 ton' },
-  { id: 'pegasus', name: 'Pegasus Angin', emoji: '🐎', rarity: 'rahasia', desc: 'Kuda bersayap putih bersih yang meluncur cepat menembus awan petir.', height: '1.7 m', weight: '400 kg' }
+  { id: 'pegasus', name: 'Pegasus Angin', emoji: '🐎', rarity: 'rahasia', desc: 'Kuda bersayap putih bersih yang meluncur cepat menembus awan petir.', height: '1.7 m', weight: '400 kg' },
+  { id: 'kirin', name: 'Kirin Cahaya', emoji: '🦌', rarity: 'rahasia', desc: 'Makhluk suci yang memancarkan cahaya lembut saat melangkah di atas embun.', height: '2 m', weight: '500 kg' },
+  { id: 'leviathan', name: 'Leviathan Laut', emoji: '🐚', rarity: 'rahasia', desc: 'Monster laut purba yang menimbulkan gelombang besar di lautan terdalam.', height: '20 m', weight: '3 ton' },
+  { id: 'fenix', name: 'Fenix Eter', emoji: '🌈', rarity: 'rahasia', desc: 'Burung api yang menyala dengan warna pelangi dan menghidupkan kembali api abadi.', height: '3 m', weight: '90 kg' }
 ];
 
 // Sound Synthesizer Utility using Web Audio API

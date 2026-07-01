@@ -6,7 +6,7 @@ Game simulator gacha hewan interaktif premium berbasis web (HTML/CSS/JS) dengan 
 
 - 🪙 **Saldo Awal 10.000 Token**: Memulai petualangan koleksi Anda dengan modal token yang melimpah.
 - ⏳ **Sistem Token Pasif per Jam**: Mendapatkan tambahan 100 token setiap jam secara pasif, dilengkapi dengan kalkulator waktu offline (akumulasi token tetap dihitung saat game ditutup).
-- 🦁 **Koleksi 18 Hewan Eksotis**: Terbagi ke dalam 4 tingkatan kelangkaan:
+- 🦁 **Koleksi 30 Hewan Eksotis**: Terbagi ke dalam 4 tingkatan kelangkaan:
   - **Biasa (65%)** - Hijau (Kucing, Anjing, Kelinci, dll.)
   - **Langka (24%)** - Biru (Panda, Koala, Rubah, dll.)
   - **Legendaris (10%)** - Emas (Harimau Sumatra, Komodo Purba, dll.)
