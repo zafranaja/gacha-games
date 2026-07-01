@@ -822,10 +822,15 @@ const UI = {
     }
 
     this.cardsFlippedCount = 0;
+    this.newlyUnlockedAnimalIds = [];
 
     // Build card elements
     this.gachaQueue.forEach((animal) => {
-      const isNew = !(State.collection[animal.id] || 0);
+      const previousCount = State.collection[animal.id] || 0;
+      const isNew = previousCount === 0;
+      if (isNew) {
+        this.newlyUnlockedAnimalIds.push(animal.id);
+      }
       // Add to player state
       State.addAnimalToCollection(animal);
 
