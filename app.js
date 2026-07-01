@@ -342,6 +342,12 @@ const State = {
     30: 10000
   },
   exchangeMissionProgress: 0,
+  travelShop: {
+    lastRefreshTime: null,
+    stock: []
+  },
+  travelShopInterval: 3600 * 1000,
+  travelShopStockSize: 5,
 
   init() {
     // Load state from localStorage
@@ -388,6 +394,14 @@ const State = {
       this.saveExchangeMissionProgress();
     }
 
+    if (localStorage.getItem('gacha_travel_shop') !== null) {
+      this.travelShop = JSON.parse(localStorage.getItem('gacha_travel_shop'));
+    } else {
+      this.travelShop = { lastRefreshTime: now, stock: [] };
+      this.saveTravelShop();
+    }
+
+    this.refreshTravelShop(now, true);
     this.processOfflineEarnings(now);
   },
 
@@ -409,6 +423,68 @@ const State = {
 
   saveExchangeMissionProgress() {
     localStorage.setItem('gacha_exchange_mission_progress', this.exchangeMissionProgress.toString());
+  },
+
+  saveTravelShop() {
+    localStorage.setItem('gacha_travel_shop', JSON.stringify(this.travelShop));
+  },
+
+  getTravelCardPrice(rarity) {
+    const ranges = {
+      biasa: [50, 100],
+      langka: [100, 300],
+      legendaris: [300, 1000],
+      rahasia: [5000, 10000]
+    };
+
+    const [min, max] = ranges[rarity] || ranges.biasa;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
+  refreshTravelShop(now = Date.now(), force = false) {
+    const shouldRefresh = force || !this.travelShop.lastRefreshTime || (now - this.travelShop.lastRefreshTime) >= this.travelShopInterval;
+    if (!shouldRefresh) return false;
+
+    const pool = [...animals];
+    const stock = [];
+    const usedIds = new Set();
+
+    while (stock.length < this.travelShopStockSize && pool.length > 0) {
+      const index = Math.floor(Math.random() * pool.length);
+      const animal = pool.splice(index, 1)[0];
+      if (usedIds.has(animal.id)) continue;
+
+      usedIds.add(animal.id);
+      stock.push({
+        id: animal.id,
+        name: animal.name,
+        emoji: animal.emoji,
+        rarity: animal.rarity,
+        price: this.getTravelCardPrice(animal.rarity)
+      });
+    }
+
+    this.travelShop.lastRefreshTime = now;
+    this.travelShop.stock = stock;
+    this.saveTravelShop();
+    UI.renderTravelShop();
+    return true;
+  },
+
+  purchaseTravelCard(item) {
+    if (!item) return false;
+    if (this.tokens < item.price) {
+      UI.showToast('Token tidak mencukupi untuk membeli kartu ini.', 'warning');
+      return false;
+    }
+
+    this.deductTokens(item.price);
+    this.addAnimalToCollection(item);
+    this.travelShop.stock = this.travelShop.stock.filter(stockItem => stockItem.id !== item.id);
+    this.saveTravelShop();
+    UI.renderTravelShop();
+    UI.showToast(`Kamu membeli ${item.name} seharga ${item.price} Token.`, 'success');
+    return true;
   },
 
   addTokens(amount) {
@@ -536,6 +612,7 @@ const UI = {
     this.renderCollection();
     this.renderHistory();
     this.renderChestInfo();
+    this.renderTravelShop();
     this.updateGachaButtonsState();
   },
 
@@ -803,6 +880,8 @@ const UI = {
       if (timerCount) {
         timerCount.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
       }
+
+      this.renderTravelShop();
 
       if (progressBar) {
         const percentage = ((State.nextClaimInterval - remaining) / State.nextClaimInterval) * 100;
@@ -1192,6 +1271,47 @@ const UI = {
   getRarityIcon(rarity) {
     const icons = { biasa: '🟢', langka: '🔵', legendaris: '🟡', rahasia: '🔴' };
     return icons[rarity] || '⚪';
+  },
+
+  renderTravelShop() {
+    const container = document.getElementById('travel-shop-grid');
+    const timer = document.getElementById('travel-shop-next-refresh');
+    if (!container) return;
+
+    State.refreshTravelShop(Date.now());
+
+    const remaining = Math.max(0, State.travelShop.lastRefreshTime + State.travelShopInterval - Date.now());
+    const minutes = Math.floor(remaining / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+    if (timer) {
+      timer.textContent = `Refresh: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    if (!State.travelShop.stock.length) {
+      container.innerHTML = '<div class="travel-shop-empty">Stok sedang diisi ulang...</div>';
+      return;
+    }
+
+    container.innerHTML = State.travelShop.stock.map(item => `
+      <div class="travel-shop-item">
+        <div class="travel-shop-item-top">
+          <span class="travel-shop-emoji">${item.emoji}</span>
+          <span class="travel-shop-rarity ${item.rarity}">${item.rarity}</span>
+        </div>
+        <div class="travel-shop-name">${item.name}</div>
+        <div class="travel-shop-price">${item.price} 🪙</div>
+        <button class="travel-shop-buy" type="button" data-item-id="${item.id}">Beli</button>
+      </div>
+    `).join('');
+
+    container.querySelectorAll('.travel-shop-buy').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = State.travelShop.stock.find(stockItem => stockItem.id === button.dataset.itemId);
+        if (target) {
+          State.purchaseTravelCard(target);
+        }
+      });
+    });
   },
 
   showToast(message, type = 'info') {

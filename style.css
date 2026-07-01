@@ -485,6 +485,99 @@ header {
   font-weight: 700;
 }
 
+/* Travel Shop */
+.travel-shop-card {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(24, 24, 39, 0.95), rgba(31, 41, 55, 0.75));
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+}
+
+.travel-shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.travel-shop-desc {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.travel-shop-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.travel-shop-item {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.travel-shop-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.travel-shop-emoji {
+  font-size: 24px;
+}
+
+.travel-shop-rarity {
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.travel-shop-rarity.biasa { background: rgba(16, 185, 129, 0.15); color: var(--rarity-biasa); }
+.travel-shop-rarity.langka { background: rgba(59, 130, 246, 0.15); color: var(--rarity-langka); }
+.travel-shop-rarity.legendaris { background: rgba(217, 119, 6, 0.15); color: var(--rarity-legendaris); }
+.travel-shop-rarity.rahasia { background: rgba(236, 72, 153, 0.15); color: var(--rarity-rahasia); }
+
+.travel-shop-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.travel-shop-price {
+  color: #fde68a;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.travel-shop-buy {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #111827;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.travel-shop-empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-muted);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+}
+
 /* Mission & Gacha Control Area */
 .mission-card {
   margin-top: 18px;
