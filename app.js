@@ -342,6 +342,7 @@ const State = {
     30: 10000
   },
   exchangeMissionProgress: 0,
+  starUpgradeProgress: {},
   travelShop: {
     lastRefreshTime: null,
     stock: []
@@ -394,6 +395,13 @@ const State = {
       this.saveExchangeMissionProgress();
     }
 
+    if (localStorage.getItem('gacha_star_upgrade_progress') !== null) {
+      this.starUpgradeProgress = JSON.parse(localStorage.getItem('gacha_star_upgrade_progress'));
+    } else {
+      this.starUpgradeProgress = {};
+      this.saveStarUpgradeProgress();
+    }
+
     if (localStorage.getItem('gacha_travel_shop') !== null) {
       this.travelShop = JSON.parse(localStorage.getItem('gacha_travel_shop'));
     } else {
@@ -423,6 +431,10 @@ const State = {
 
   saveExchangeMissionProgress() {
     localStorage.setItem('gacha_exchange_mission_progress', this.exchangeMissionProgress.toString());
+  },
+
+  saveStarUpgradeProgress() {
+    localStorage.setItem('gacha_star_upgrade_progress', JSON.stringify(this.starUpgradeProgress));
   },
 
   saveTravelShop() {
@@ -544,6 +556,30 @@ const State = {
     UI.renderCollection();
     UI.updateExchangeMissionDisplay();
     return true;
+  },
+
+  upgradeAnimalStar(animalId, targetStar) {
+    const count = this.collection[animalId] || 0;
+    const required = targetStar === 2 ? 10 : 20;
+    if (count < required) {
+      return { success: false, reason: 'need-more' };
+    }
+
+    const currentStar = this.starUpgradeProgress[animalId] || 1;
+    if (currentStar >= targetStar) {
+      return { success: false, reason: 'already-upgraded' };
+    }
+
+    this.collection[animalId] = count - required;
+    if (this.collection[animalId] <= 0) {
+      delete this.collection[animalId];
+    }
+
+    this.starUpgradeProgress[animalId] = targetStar;
+    this.saveCollection();
+    this.saveStarUpgradeProgress();
+    UI.renderCollection();
+    return { success: true, star: targetStar, remaining: this.collection[animalId] || 0 };
   },
 
   addAnimalToCollection(animal) {
@@ -1218,6 +1254,44 @@ const UI = {
           this.showAnimalDetails(animal, State.collection[animal.id] || 0);
         } else {
           this.showToast('Kamu membutuhkan minimal 5 hewan yang sama untuk ditukar.', 'warning');
+        }
+      };
+    }
+
+    const upgradeBtn2 = document.getElementById('modal-upgrade-2');
+    const upgradeBtn3 = document.getElementById('modal-upgrade-3');
+    const currentStar = State.starUpgradeProgress[animal.id] || 1;
+
+    if (upgradeBtn2) {
+      upgradeBtn2.style.display = 'inline-flex';
+      upgradeBtn2.disabled = count < 10 || currentStar >= 2;
+      upgradeBtn2.textContent = currentStar >= 2 ? 'Sudah ⭐⭐' : 'Upgrade ke ⭐⭐ (10 hewan)';
+      upgradeBtn2.onclick = () => {
+        const result = State.upgradeAnimalStar(animal.id, 2);
+        if (result.success) {
+          this.showToast(`Hewan ${animal.name} naik ke bintang 2.`, 'success');
+          this.showAnimalDetails(animal, State.collection[animal.id] || 0);
+        } else if (result.reason === 'need-more') {
+          this.showToast('Butuh minimal 10 hewan untuk upgrade ke bintang 2.', 'warning');
+        } else {
+          this.showToast('Hewan ini sudah mencapai bintang 2.', 'info');
+        }
+      };
+    }
+
+    if (upgradeBtn3) {
+      upgradeBtn3.style.display = 'inline-flex';
+      upgradeBtn3.disabled = count < 20 || currentStar >= 3;
+      upgradeBtn3.textContent = currentStar >= 3 ? 'Sudah ⭐⭐⭐' : 'Upgrade ke ⭐⭐⭐ (20 hewan)';
+      upgradeBtn3.onclick = () => {
+        const result = State.upgradeAnimalStar(animal.id, 3);
+        if (result.success) {
+          this.showToast(`Hewan ${animal.name} naik ke bintang 3.`, 'success');
+          this.showAnimalDetails(animal, State.collection[animal.id] || 0);
+        } else if (result.reason === 'need-more') {
+          this.showToast('Butuh minimal 20 hewan untuk upgrade ke bintang 3.', 'warning');
+        } else {
+          this.showToast('Hewan ini sudah mencapai bintang 3.', 'info');
         }
       };
     }

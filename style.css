@@ -387,21 +387,46 @@ header {
 .rarity-pill.rahasia { background: rgba(236, 72, 153, 0.15); color: var(--rarity-rahasia); border-color: rgba(236, 72, 153, 0.3); }
 
 /* Modal exchange button */
-.modal-exchange-button {
+.modal-upgrade-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.modal-exchange-button,
+.modal-upgrade-button {
   display: none;
-  margin: 12px auto 0;
   border: none;
   border-radius: 999px;
   padding: 10px 16px;
-  background: linear-gradient(135deg, #f59e0b, #fbbf24);
   color: #111827;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25);
 }
 
-.modal-exchange-button:hover {
+.modal-exchange-button {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.modal-upgrade-button {
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  color: white;
+}
+
+.modal-exchange-button:hover,
+.modal-upgrade-button:hover {
   transform: translateY(-1px);
+}
+
+.modal-exchange-button:disabled,
+.modal-upgrade-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .new-badge {
