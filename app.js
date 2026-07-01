@@ -880,7 +880,7 @@ const UI = {
     const chest = egg;
     chest.dataset.rarity = highestRarity;
 
-    const chest = chestTypes[chestId] || chestTypes.biasa;
+    const chestConfig = chestTypes[chestId] || chestTypes.biasa;
 
     // Apply color glow to portal matching highest rarity
     const colors = {
@@ -895,7 +895,7 @@ const UI = {
     this.gachaQueue = pulledList;
     this.eggShakeCount = 0;
     this.isEggPopped = false;
-    instruction.textContent = `Membuka ${chest.label.toLowerCase()}...`;
+    instruction.textContent = `Membuka ${chestConfig.label.toLowerCase()}...`;
   },
 
   shakeEgg() {
