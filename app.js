@@ -561,13 +561,18 @@ const State = {
   upgradeAnimalStar(animalId, targetStar) {
     const count = this.collection[animalId] || 0;
     const required = targetStar === 2 ? 10 : 20;
+    const currentStar = this.starUpgradeProgress[animalId] || 1;
+
     if (count < required) {
       return { success: false, reason: 'need-more' };
     }
 
-    const currentStar = this.starUpgradeProgress[animalId] || 1;
     if (currentStar >= targetStar) {
       return { success: false, reason: 'already-upgraded' };
+    }
+
+    if (targetStar === 3 && currentStar < 2) {
+      return { success: false, reason: 'need-star-2' };
     }
 
     this.collection[animalId] = count - required;
@@ -1196,6 +1201,9 @@ const UI = {
         return;
       }
 
+      const currentStar = State.starUpgradeProgress[animal.id] || 1;
+      const starLabel = currentStar >= 3 ? '⭐⭐⭐' : currentStar === 2 ? '⭐⭐' : '';
+
       const card = document.createElement('div');
       card.className = `animal-card ${isUnlocked ? 'unlocked' : 'locked'} ${animal.rarity}`;
       card.innerHTML = `
@@ -1205,6 +1213,7 @@ const UI = {
           <span class="animal-emoji">${animal.emoji}</span>
         </div>
         <div class="animal-name">${isUnlocked ? animal.name : '???'}</div>
+        ${isUnlocked && starLabel ? `<div class="animal-star-badge">${starLabel}</div>` : ''}
         <div class="animal-rarity-tag">${animal.rarity}</div>
         ${isUnlocked ? `<div class="animal-count">Dimiliki: x${count}</div>` : ''}
       `;
@@ -1281,8 +1290,9 @@ const UI = {
 
     if (upgradeBtn3) {
       upgradeBtn3.style.display = 'inline-flex';
-      upgradeBtn3.disabled = count < 20 || currentStar >= 3;
-      upgradeBtn3.textContent = currentStar >= 3 ? 'Sudah ⭐⭐⭐' : 'Upgrade ke ⭐⭐⭐ (20 hewan)';
+      const canUpgradeToStar3 = currentStar >= 2 && count >= 20 && currentStar < 3;
+      upgradeBtn3.disabled = !canUpgradeToStar3;
+      upgradeBtn3.textContent = currentStar >= 3 ? 'Sudah ⭐⭐⭐' : currentStar < 2 ? 'Butuh ⭐⭐ dulu' : 'Upgrade ke ⭐⭐⭐ (20 hewan)';
       upgradeBtn3.onclick = () => {
         const result = State.upgradeAnimalStar(animal.id, 3);
         if (result.success) {
@@ -1290,6 +1300,8 @@ const UI = {
           this.showAnimalDetails(animal, State.collection[animal.id] || 0);
         } else if (result.reason === 'need-more') {
           this.showToast('Butuh minimal 20 hewan untuk upgrade ke bintang 3.', 'warning');
+        } else if (result.reason === 'need-star-2') {
+          this.showToast('Hewan ini harus sudah mencapai bintang 2 dulu.', 'warning');
         } else {
           this.showToast('Hewan ini sudah mencapai bintang 3.', 'info');
         }

@@ -1123,6 +1123,15 @@ header {
   margin-top: 6px;
 }
 
+.animal-star-badge {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fbbf24;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
+}
+
 /* HISTORY TAB STYLES */
 .history-container {
   background: var(--glass-bg);
