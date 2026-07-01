@@ -1,0 +1,7 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Antigravity system logs
+.system_generated/
+*.log

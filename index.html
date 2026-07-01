@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mainkan Gacha Hewan Mistik Premium! Kumpulkan berbagai hewan unik dari kelangkaan Biasa, Langka, Legendaris, hingga Rahasia. Dapatkan token gratis setiap jam.">
+  <title>Gacha Hewan Mistik - Game Gacha Premium</title>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Main Wrapper -->
+  <div class="app-container">
+    
+    <!-- Header Dashboard -->
+    <header>
+      <div class="logo-section">
+        <h1 id="app-title">
+          <span class="logo-icon">🔮</span>
+          <span>MisticZoo Gacha</span>
+        </h1>
+      </div>
+      
+      <!-- Token & Claim Info -->
+      <div class="dashboard-stats">
+        <div class="token-badge" id="token-dashboard">
+          <span class="coin-icon">🪙</span>
+          <span class="token-amount" id="token-amount">10,000</span>
+          <span style="font-size: 12px; color: #fbbf24; font-weight: bold;">Token</span>
+        </div>
+        
+        <!-- Timer Per Jam -->
+        <div class="passive-timer" id="claim-timer">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span class="timer-label">Bonus Berikutnya (+100):</span>
+            <span class="timer-countdown" id="timer-countdown">60:00</span>
+          </div>
+          <div class="timer-progress-bar">
+            <div class="timer-progress" id="timer-progress"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" id="main-navigation">
+      <button class="tab-btn active" data-tab="gacha" id="nav-gacha">
+        <span>🎪</span> Gacha
+      </button>
+      <button class="tab-btn" data-tab="collection" id="nav-collection">
+        <span>🐾</span> Koleksi
+      </button>
+      <button class="tab-btn" data-tab="history" id="nav-history">
+        <span>📜</span> Riwayat
+      </button>
+    </nav>
+
+    <!-- VIEW: GACHA PULL SCREEN -->
+    <main class="view-content active" id="view-gacha">
+      <div class="gacha-banner-wrapper">
+        <!-- Banner Image Container -->
+        <div class="gacha-banner-image-container">
+          <img src="assets/gacha_banner.jpg" alt="Mystical Forest Gacha Banner" class="gacha-banner-img" id="gacha-banner-img">
+          <div class="gacha-banner-overlay">
+            <div class="banner-info">
+              <h2 id="banner-title">Hutan Margasatwa Mistik</h2>
+              <p id="banner-desc">Panggil kekuatan bintang untuk memanggil hewan legendaris dan rahasia kuno ke dalam dek koleksimu! Setiap pemanggilan memiliki peluang menemukan spesies langka.</p>
+              
+              <!-- Rarity Odds Info -->
+              <div class="rarity-pills">
+                <div class="rarity-pill biasa">🟢 Biasa: 65%</div>
+                <div class="rarity-pill langka">🔵 Langka: 24%</div>
+                <div class="rarity-pill legendaris">🟡 Legendaris: 10%</div>
+                <div class="rarity-pill rahasia">🔴 Rahasia: 1%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pull Controls -->
+        <div class="gacha-controls">
+          <button class="btn-gacha btn-gacha-1" id="btn-gacha-1">
+            <span>Panggil 1x</span>
+            <div class="btn-cost">
+              <span class="coin">🪙</span> 100 Token
+            </div>
+          </button>
+          
+          <button class="btn-gacha btn-gacha-10" id="btn-gacha-10">
+            <span>Panggil 10x</span>
+            <div class="btn-cost">
+              <span class="coin">🪙</span> 1,000 Token
+            </div>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- VIEW: ANIMAL COLLECTION GRID -->
+    <section class="view-content" id="view-collection">
+      <div class="collection-header">
+        <div class="collection-stats" id="collection-stats">
+          Koleksi Terbuka: <span>0</span> / 18 (0%)
+        </div>
+        
+        <!-- Filter Category Buttons -->
+        <div class="filter-controls" id="filter-controls">
+          <button class="filter-btn active" data-filter="all">Semua</button>
+          <button class="filter-btn" data-filter="biasa">Biasa</button>
+          <button class="filter-btn" data-filter="langka">Langka</button>
+          <button class="filter-btn" data-filter="legendaris">Legendaris</button>
+          <button class="filter-btn" data-filter="rahasia">Rahasia</button>
+        </div>
+      </div>
+
+      <!-- Collection Cards Grid -->
+      <div class="collection-grid" id="collection-grid">
+        <!-- Javascript will populate animal cards here -->
+      </div>
+    </section>
+
+    <!-- VIEW: PULL HISTORY -->
+    <section class="view-content" id="view-history">
+      <div class="history-container">
+        <div class="history-header">
+          <h2 style="font-size: 18px;">Catatan Pemanggilan Terakhir</h2>
+          <button class="btn-clear-history" id="btn-clear-history">Bersihkan Riwayat</button>
+        </div>
+        <div class="history-list" id="history-list">
+          <!-- Javascript will populate history logs here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 MisticZoo Gacha Simulator. Dibuat dengan cinta untuk para kolektor hewan.</p>
+    </footer>
+
+  </div>
+
+  <!-- GACHA PULL ANIMATION SCREEN OVERLAY -->
+  <div class="gacha-animation-overlay" id="gacha-animation-overlay">
+    
+    <!-- Step 1: Portal & Egg opening -->
+    <div class="portal-container" id="portal-container">
+      <div class="gacha-portal" id="gacha-portal"></div>
+      <div class="gacha-egg" id="gacha-egg">🥚</div>
+      <div class="glow-beam" id="glow-beam"></div>
+    </div>
+    
+    <div class="gacha-instruction" id="gacha-instruction">
+      Ketuk telur berulang kali untuk memecahkannya!
+    </div>
+
+    <!-- Step 2: Cards Reveal container -->
+    <div class="reveal-wrapper" id="reveal-wrapper">
+      <h2 class="reveal-title" id="reveal-title">Hasil Pemanggilan Mistik</h2>
+      <button class="btn-reveal-all" id="btn-reveal-all">Buka Semua</button>
+      <div class="reveal-cards-container" id="reveal-cards-container">
+        <!-- Render cards here -->
+      </div>
+      <button class="btn-reveal-close" id="btn-reveal-close" style="display: none;">Kembali ke Menu</button>
+    </div>
+
+  </div>
+
+  <!-- ANIMAL DETAILS MODAL -->
+  <div class="modal-overlay" id="details-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Tutup Detail">✕</button>
+      
+      <!-- Animal Visual Glow and Avatar -->
+      <div class="modal-animal-glow" id="modal-animal-glow">
+        <span class="modal-animal-emoji" id="modal-animal-emoji">🐱</span>
+      </div>
+
+      <!-- Name & Rarity -->
+      <h3 class="modal-animal-name" id="modal-animal-name">Kucing Kampung</h3>
+      <div class="modal-animal-rarity" id="modal-animal-rarity">Biasa</div>
+
+      <!-- Description Box -->
+      <div class="modal-desc-box">
+        <h4>Fakta Hewan</h4>
+        <p id="modal-animal-desc">Suka tidur di mana saja dan sangat manja. Hewan peliharaan terpopuler di dunia!</p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="modal-stats">
+        <div class="modal-stat-pill">
+          Tinggi
+          <span id="modal-stat-height">25 cm</span>
+        </div>
+        <div class="modal-stat-pill">
+          Bobot
+          <span id="modal-stat-weight">4 kg</span>
+        </div>
+        <div class="modal-stat-pill">
+          Dimiliki
+          <span id="modal-stat-owned">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Script logic -->
+  <script src="app.js"></script>
+</body>
+</html>
