@@ -829,17 +829,13 @@ const UI = {
     // Reset overlay elements
     overlay.classList.add('active');
     reveal.classList.remove('active');
-    instruction.textContent = 'Ketuk telur berulang kali untuk memecahkannya!';
+    instruction.textContent = 'Ketuk peti harta karun berulang kali untuk membukanya!';
     egg.classList.remove('pop');
+    egg.classList.remove('opened');
+    egg.style.transform = '';
     
-    // Choose egg emoji based on highest rarity
-    const eggs = {
-      biasa: '🥚',
-      langka: '🔵',
-      legendaris: '🟣',
-      rahasia: '✨'
-    };
-    egg.textContent = eggs[highestRarity] || '🥚';
+    const chest = egg;
+    chest.dataset.rarity = highestRarity;
 
     // Apply color glow to portal matching highest rarity
     const colors = {
@@ -872,13 +868,14 @@ const UI = {
     }, 100);
 
     if (this.eggShakeCount >= 5) {
-      // POP EGG!
+      // OPEN TREASURE CHEST!
       this.isEggPopped = true;
       SoundEffect.playPop();
       egg.classList.add('pop');
+      egg.classList.add('opened');
       beam.classList.add('active');
       
-      document.getElementById('gacha-instruction').textContent = 'Membuka Portal...';
+      document.getElementById('gacha-instruction').textContent = 'Membuka harta karun...';
 
       setTimeout(() => {
         beam.classList.remove('active');
