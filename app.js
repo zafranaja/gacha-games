@@ -94,8 +94,11 @@ const SoundEffect = {
   },
 
   playClick() {
-    this.init();
-    const osc = this.ctx.createOscillator();
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.connect(gain);
     gain.connect(this.ctx.destination);
@@ -107,13 +110,19 @@ const SoundEffect = {
     gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
     gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
 
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.08);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.08);
+    } catch (error) {
+      console.warn('Sound effect skipped:', error);
+    }
   },
 
   playShake() {
-    this.init();
-    const osc = this.ctx.createOscillator();
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.connect(gain);
     gain.connect(this.ctx.destination);
@@ -125,13 +134,19 @@ const SoundEffect = {
     gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
     gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.15);
 
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.15);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.15);
+    } catch (error) {
+      console.warn('Sound effect skipped:', error);
+    }
   },
 
   playPop() {
-    this.init();
-    // Low pop noise
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      // Low pop noise
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.connect(gain);
@@ -144,13 +159,19 @@ const SoundEffect = {
     gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
     gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
 
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.3);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.3);
+    } catch (error) {
+      console.warn('Sound effect skipped:', error);
+    }
   },
 
   playReveal(rarity) {
-    this.init();
-    const now = this.ctx.currentTime;
+    if (!this.enabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const now = this.ctx.currentTime;
     
     if (rarity === 'biasa') {
       // Short friendly chime
@@ -176,6 +197,9 @@ const SoundEffect = {
         this.playNote(freq, durations[idx], now + delay, 'sawtooth', 0.12);
         delay += 0.06;
       });
+    }
+    } catch (error) {
+      console.warn('Sound effect skipped:', error);
     }
   },
 
@@ -1000,7 +1024,9 @@ const UI = {
 
     const exchangeBtn = document.getElementById('modal-exchange-button');
     if (exchangeBtn) {
-      exchangeBtn.style.display = count >= 5 ? 'inline-flex' : 'none';
+      exchangeBtn.style.display = 'inline-flex';
+      exchangeBtn.disabled = count < 5;
+      exchangeBtn.textContent = count >= 5 ? 'Tukar 5x = +500 Token' : 'Butuh 5x untuk tukar';
       exchangeBtn.onclick = () => {
         const exchanged = State.exchangeDuplicateAnimal(animal.id);
         if (exchanged) {
