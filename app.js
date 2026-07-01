@@ -323,7 +323,7 @@ const State = {
   collection: {}, // id -> count
   history: [], // array of logs
   lastClaimTime: null,
-  nextClaimInterval: 3600 * 1000, // 1 hour in ms
+  nextClaimInterval: 30 * 60 * 1000, // 30 minutes in ms
   timerInterval: null,
   gachaMissionGoal: 10,
   gachaMissionReward: 100,
@@ -616,7 +616,7 @@ const State = {
     const hours = Math.floor(elapsed / this.nextClaimInterval);
 
     if (hours > 0) {
-      const earnedTokens = hours * 100;
+      const earnedTokens = hours * 1000;
       this.tokens += earnedTokens;
       this.saveTokens();
       
@@ -625,7 +625,7 @@ const State = {
       localStorage.setItem('gacha_last_claim', this.lastClaimTime.toString());
 
       setTimeout(() => {
-        UI.showToast(`Selamat datang kembali! Kamu mendapatkan +${earnedTokens} Token dari akumulasi offline (${hours} jam).`, 'success');
+        UI.showToast(`Selamat datang kembali! Kamu mendapatkan +${earnedTokens} Token dari akumulasi offline (${hours} periode 30 menit).`, 'success');
       }, 800);
     }
   }
@@ -913,10 +913,10 @@ const UI = {
       if (elapsed >= State.nextClaimInterval) {
         // Time to claim
         const loops = Math.floor(elapsed / State.nextClaimInterval);
-        State.addTokens(loops * 100);
+        State.addTokens(loops * 1000);
         State.lastClaimTime += loops * State.nextClaimInterval;
         localStorage.setItem('gacha_last_claim', State.lastClaimTime.toString());
-        this.showToast(`Hourly Reward! Kamu mendapatkan +${loops * 100} Token secara pasif!`, 'success');
+        this.showToast(`Reward 30 Menit! Kamu mendapatkan +${loops * 1000} Token secara pasif!`, 'success');
         SoundEffect.playReveal('langka');
       }
 
