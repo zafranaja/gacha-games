@@ -151,6 +151,89 @@ const SoundEffect = {
   }
 };
 
+// Ambient instrumental music
+const Music = {
+  ctx: null,
+  masterGain: null,
+  active: false,
+  loopTimer: null,
+
+  init() {
+    if (!this.ctx) {
+      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      this.masterGain = this.ctx.createGain();
+      this.masterGain.gain.value = 0.03;
+      this.masterGain.connect(this.ctx.destination);
+    }
+  },
+
+  async toggle() {
+    this.init();
+
+    if (this.ctx.state === 'suspended') {
+      await this.ctx.resume();
+    }
+
+    if (this.active) {
+      this.stop();
+      return false;
+    }
+
+    this.active = true;
+    this.playLoop();
+    return true;
+  },
+
+  playLoop() {
+    this.stopLoop();
+
+    const pattern = [261.63, 329.63, 392.0, 523.25, 392.0, 329.63];
+    let step = 0;
+
+    const playStep = () => {
+      if (!this.active) return;
+
+      const freq = pattern[step % pattern.length];
+      this.playNote(freq, 0.7, 0.05, 'triangle', 0.04);
+      this.playNote(freq * 1.5, 0.55, 0.05, 'sine', 0.02);
+      step += 1;
+      this.loopTimer = setTimeout(playStep, 1400);
+    };
+
+    playStep();
+  },
+
+  playNote(frequency, duration, delay = 0, type = 'triangle', volume = 0.04) {
+    if (!this.ctx) return;
+
+    const now = this.ctx.currentTime + delay;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.connect(gain);
+    gain.connect(this.masterGain);
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(frequency, now);
+    gain.gain.setValueAtTime(volume, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    osc.start(now);
+    osc.stop(now + duration);
+  },
+
+  stopLoop() {
+    if (this.loopTimer) {
+      clearTimeout(this.loopTimer);
+      this.loopTimer = null;
+    }
+  },
+
+  stop() {
+    this.active = false;
+    this.stopLoop();
+  }
+};
+
 // Game State Management
 const State = {
   tokens: 10000,
@@ -159,6 +242,9 @@ const State = {
   lastClaimTime: null,
   nextClaimInterval: 3600 * 1000, // 1 hour in ms
   timerInterval: null,
+  gachaMissionGoal: 10,
+  gachaMissionReward: 100,
+  gachaMissionProgress: 0,
 
   init() {
     // Load state from localStorage
@@ -191,6 +277,13 @@ const State = {
       localStorage.setItem('gacha_last_claim', this.lastClaimTime.toString());
     }
 
+    if (localStorage.getItem('gacha_mission_progress') !== null) {
+      this.gachaMissionProgress = parseInt(localStorage.getItem('gacha_mission_progress'));
+    } else {
+      this.gachaMissionProgress = 0;
+      this.saveMissionProgress();
+    }
+
     this.processOfflineEarnings(now);
   },
 
@@ -204,6 +297,10 @@ const State = {
 
   saveHistory() {
     localStorage.setItem('gacha_history', JSON.stringify(this.history));
+  },
+
+  saveMissionProgress() {
+    localStorage.setItem('gacha_mission_progress', this.gachaMissionProgress.toString());
   },
 
   addTokens(amount) {
@@ -220,6 +317,21 @@ const State = {
       return true;
     }
     return false;
+  },
+
+  advanceMissionProgress() {
+    this.gachaMissionProgress += 1;
+
+    if (this.gachaMissionProgress >= this.gachaMissionGoal) {
+      this.tokens += this.gachaMissionReward;
+      this.saveTokens();
+      UI.updateTokenDisplay(true);
+      this.gachaMissionProgress = 0;
+      UI.showToast(`Misi tercapai! Kamu mendapat +${this.gachaMissionReward} Token.`, 'success');
+    }
+
+    this.saveMissionProgress();
+    UI.updateMissionDisplay();
   },
 
   addAnimalToCollection(animal) {
@@ -278,6 +390,8 @@ const UI = {
   init() {
     this.setupEventListeners();
     this.updateTokenDisplay(false);
+    this.updateMissionDisplay();
+    this.updateMusicButtonState(false);
     this.startClaimTimer();
     this.renderCollection();
     this.renderHistory();
@@ -297,6 +411,16 @@ const UI = {
     // Gacha buttons
     document.getElementById('btn-gacha-1').addEventListener('click', () => this.handleGacha(1));
     document.getElementById('btn-gacha-10').addEventListener('click', () => this.handleGacha(10));
+
+    // Music toggle
+    const musicBtn = document.getElementById('music-toggle');
+    if (musicBtn) {
+      musicBtn.addEventListener('click', async () => {
+        SoundEffect.playClick();
+        const enabled = await Music.toggle();
+        this.updateMusicButtonState(enabled);
+      });
+    }
 
     // Filter collection buttons
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -435,6 +559,35 @@ const UI = {
     if (btn10) btn10.disabled = State.tokens < 1000;
   },
 
+  updateMissionDisplay() {
+    const fill = document.getElementById('mission-progress-fill');
+    const text = document.getElementById('mission-progress-text');
+    const counter = document.getElementById('mission-count');
+
+    if (fill) {
+      const progressPercent = Math.min((State.gachaMissionProgress / State.gachaMissionGoal) * 100, 100);
+      fill.style.width = `${progressPercent}%`;
+    }
+
+    if (text) {
+      text.textContent = `Progress ${State.gachaMissionProgress}/${State.gachaMissionGoal}`;
+    }
+
+    if (counter) {
+      counter.textContent = `${State.gachaMissionProgress}/${State.gachaMissionGoal}`;
+    }
+  },
+
+  updateMusicButtonState(isPlaying) {
+    const button = document.getElementById('music-toggle');
+    if (!button) return;
+
+    button.classList.toggle('active', isPlaying);
+    button.innerHTML = isPlaying
+      ? '<span>🎵</span> Musik: Nyala'
+      : '<span>🔈</span> Musik: Mati';
+  },
+
   startClaimTimer() {
     if (State.timerInterval) {
       clearInterval(State.timerInterval);
@@ -487,6 +640,7 @@ const UI = {
 
     // Deduct tokens
     State.deductTokens(cost);
+    State.advanceMissionProgress();
 
     // Generate pulled animals
     const pulledList = [];

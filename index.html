@@ -41,6 +41,10 @@
             <div class="timer-progress" id="timer-progress"></div>
           </div>
         </div>
+
+        <button class="music-toggle" id="music-toggle" type="button">
+          <span>🔈</span> Musik: Mati
+        </button>
       </div>
     </header>
 
@@ -79,6 +83,23 @@
           </div>
         </div>
 
+        <div class="mission-card">
+          <div class="mission-card-header">
+            <div>
+              <p class="mission-label">Misi Gacha</p>
+              <h3>10 kali gacha = +100 Token</h3>
+            </div>
+            <span class="mission-reward-pill">+100 🪙</span>
+          </div>
+          <div class="mission-progress-bar">
+            <div class="mission-progress-fill" id="mission-progress-fill"></div>
+          </div>
+          <div class="mission-progress-meta">
+            <span id="mission-progress-text">Progress 0/10</span>
+            <span id="mission-count">0/10</span>
+          </div>
+        </div>
+
         <!-- Pull Controls -->
         <div class="gacha-controls">
           <button class="btn-gacha btn-gacha-1" id="btn-gacha-1">
@@ -102,7 +123,7 @@
     <section class="view-content" id="view-collection">
       <div class="collection-header">
         <div class="collection-stats" id="collection-stats">
-          Koleksi Terbuka: <span>0</span> / 18 (0%)
+          Koleksi Terbuka: <span>0</span> / 30 (0%)
         </div>
         
         <!-- Filter Category Buttons -->
