@@ -53,6 +53,9 @@
       <button class="tab-btn active" data-tab="gacha" id="nav-gacha">
         <span>🎪</span> Gacha
       </button>
+      <button class="tab-btn" data-tab="travel" id="nav-travel">
+        <span>🧭</span> Travel
+      </button>
       <button class="tab-btn" data-tab="collection" id="nav-collection">
         <span>🐾</span> Koleksi
       </button>
@@ -110,16 +113,15 @@
           </button>
         </div>
 
-        <div class="travel-shop-card">
+        <div class="travel-shop-card travel-shop-preview-card">
           <div class="travel-shop-header">
             <div>
               <p class="mission-label">Toko Travel</p>
-              <h3>5 kartu random setiap jam</h3>
+              <h3>Masuk menu khusus untuk melihat stok kartu misterius</h3>
             </div>
-            <span class="mission-reward-pill" id="travel-shop-next-refresh">Refresh: --:--</span>
           </div>
-          <p class="travel-shop-desc">Beli kartu acak dari perjalanan. Stok akan berganti setiap jam.</p>
-          <div class="travel-shop-grid" id="travel-shop-grid"></div>
+          <p class="travel-shop-desc">Penjaga toko berjubah poncho dan masker siap melayani pembeli.</p>
+          <button class="btn-travel-open" type="button" data-open-tab="travel">Buka Toko Travel</button>
         </div>
 
         <div class="mission-card">
@@ -174,6 +176,40 @@
         </div>
       </div>
     </main>
+
+    <!-- VIEW: TRAVEL SHOP -->
+    <section class="view-content" id="view-travel">
+      <div class="travel-shop-view">
+        <div class="travel-merchant-card">
+          <div class="travel-merchant-figure" aria-hidden="true">
+            <div class="merchant-poncho"></div>
+            <div class="merchant-mask"></div>
+            <div class="merchant-head"></div>
+            <div class="merchant-body"></div>
+          </div>
+          <div class="travel-merchant-copy">
+            <p class="mission-label">Penjaga Toko Travel</p>
+            <h2>Traveler Berjubah Poncho</h2>
+            <p>Dia memakai masker dan jubah poncho, menunggu pembeli yang ingin membeli kartu langka dari perjalanan jauh.</p>
+            <div class="travel-merchant-badges">
+              <span>5 kartu per jam</span>
+              <span>Refresh setiap jam</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="travel-shop-screen">
+          <div class="travel-shop-header-row">
+            <div>
+              <p class="mission-label">Stok Saat Ini</p>
+              <h3>5 kartu random siap dibeli</h3>
+            </div>
+            <span class="mission-reward-pill" id="travel-shop-next-refresh">Refresh: --:--</span>
+          </div>
+          <div class="travel-shop-grid" id="travel-shop-grid"></div>
+        </div>
+      </div>
+    </section>
 
     <!-- VIEW: ANIMAL COLLECTION GRID -->
     <section class="view-content" id="view-collection">

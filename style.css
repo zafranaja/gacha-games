@@ -495,6 +495,142 @@ header {
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
 }
 
+.travel-shop-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-travel-open {
+  align-self: flex-start;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #111827;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.travel-shop-view {
+  display: grid;
+  gap: 20px;
+}
+
+.travel-merchant-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(30, 41, 59, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+}
+
+.travel-merchant-figure {
+  position: relative;
+  width: 180px;
+  height: 220px;
+  flex-shrink: 0;
+}
+
+.merchant-poncho {
+  position: absolute;
+  inset: 30px 0 20px 0;
+  background: linear-gradient(135deg, #4b5563, #1f2937);
+  border-radius: 50% 50% 45% 45%;
+  transform: rotate(-6deg);
+  box-shadow: inset 0 -12px 0 rgba(0, 0, 0, 0.25);
+}
+
+.merchant-head {
+  position: absolute;
+  top: 10px;
+  left: 54px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #f5d7b7;
+  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.merchant-mask {
+  position: absolute;
+  top: 40px;
+  left: 44px;
+  width: 92px;
+  height: 54px;
+  background: linear-gradient(135deg, #111827, #374151);
+  border-radius: 18px 18px 22px 22px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.merchant-mask::before,
+.merchant-mask::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #111827;
+}
+
+.merchant-mask::before { left: 18px; }
+.merchant-mask::after { right: 18px; }
+
+.merchant-body {
+  position: absolute;
+  bottom: 0;
+  left: 44px;
+  width: 92px;
+  height: 96px;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  border-radius: 24px 24px 18px 18px;
+}
+
+.travel-merchant-copy h2 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.travel-merchant-copy p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.travel-merchant-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.travel-merchant-badges span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fde68a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.travel-shop-screen {
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(9, 9, 11, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.travel-shop-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
 .travel-shop-header {
   display: flex;
   justify-content: space-between;

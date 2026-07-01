@@ -467,7 +467,6 @@ const State = {
     this.travelShop.lastRefreshTime = now;
     this.travelShop.stock = stock;
     this.saveTravelShop();
-    UI.renderTravelShop();
     return true;
   },
 
@@ -478,8 +477,9 @@ const State = {
       return false;
     }
 
+    const animalData = animals.find(animal => animal.id === item.id) || item;
     this.deductTokens(item.price);
-    this.addAnimalToCollection(item);
+    this.addAnimalToCollection(animalData);
     this.travelShop.stock = this.travelShop.stock.filter(stockItem => stockItem.id !== item.id);
     this.saveTravelShop();
     UI.renderTravelShop();
@@ -630,6 +630,10 @@ const UI = {
     document.getElementById('btn-gacha-1').addEventListener('click', () => this.handleGacha(1));
     document.getElementById('btn-gacha-10').addEventListener('click', () => this.handleGacha(10));
 
+    document.querySelectorAll('[data-open-tab="travel"]').forEach(button => {
+      button.addEventListener('click', () => this.switchTab('travel'));
+    });
+
     // Chest selection
     document.querySelectorAll('.chest-option').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -740,6 +744,8 @@ const UI = {
       this.renderCollection();
     } else if (tab === 'history') {
       this.renderHistory();
+    } else if (tab === 'travel') {
+      this.renderTravelShop();
     }
   },
 
