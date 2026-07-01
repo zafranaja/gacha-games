@@ -71,6 +71,21 @@ const animals = [
   { id: 'aether_serpent', name: 'Aether Serpent', emoji: '🌀', rarity: 'rahasia', desc: 'Ular cahaya yang melilit ruang dan waktu dengan aura berpendar.', height: '8 m', weight: '150 kg' }
 ];
 
+const chestTypes = {
+  biasa: {
+    label: 'Peti Biasa',
+    price: 100,
+    price10: 1000,
+    rates: { biasa: 65, langka: 24, legendaris: 10, rahasia: 1 }
+  },
+  elite: {
+    label: 'Peti Elite',
+    price: 200,
+    price10: 1500,
+    rates: { biasa: 45, langka: 30, legendaris: 20, rahasia: 5 }
+  }
+};
+
 // Sound Synthesizer Utility using Web Audio API
 const SoundEffect = {
   ctx: null,
@@ -503,6 +518,7 @@ const State = {
 const UI = {
   currentTab: 'gacha',
   currentFilter: 'all',
+  selectedChest: 'biasa',
   gachaQueue: [],
   cardsFlippedCount: 0,
   eggShakeCount: 0,
@@ -519,7 +535,8 @@ const UI = {
     this.startClaimTimer();
     this.renderCollection();
     this.renderHistory();
-    this.renderOddsInfo();
+    this.renderChestInfo();
+    this.updateGachaButtonsState();
   },
 
   setupEventListeners() {
@@ -535,6 +552,14 @@ const UI = {
     // Gacha buttons
     document.getElementById('btn-gacha-1').addEventListener('click', () => this.handleGacha(1));
     document.getElementById('btn-gacha-10').addEventListener('click', () => this.handleGacha(10));
+
+    // Chest selection
+    document.querySelectorAll('.chest-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        SoundEffect.playClick();
+        this.selectChest(btn.dataset.chest);
+      });
+    });
 
     // Music toggle
     const musicBtn = document.getElementById('music-toggle');
@@ -676,12 +701,28 @@ const UI = {
     requestAnimationFrame(animateStep);
   },
 
+  selectChest(chestId) {
+    if (!chestTypes[chestId]) return;
+    this.selectedChest = chestId;
+    document.querySelectorAll('.chest-option').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.chest === chestId);
+    });
+    this.renderChestInfo();
+    this.updateGachaButtonsState();
+  },
+
   updateGachaButtonsState() {
+    const chest = chestTypes[this.selectedChest];
     const btn1 = document.getElementById('btn-gacha-1');
     const btn10 = document.getElementById('btn-gacha-10');
+    const cost1 = document.getElementById('btn-gacha-1-cost');
+    const cost10 = document.getElementById('btn-gacha-10-cost');
 
-    if (btn1) btn1.disabled = State.tokens < 100;
-    if (btn10) btn10.disabled = State.tokens < 1000;
+    if (cost1) cost1.textContent = `${chest.price.toLocaleString()} Token`;
+    if (cost10) cost10.textContent = `${chest.price10.toLocaleString()} Token`;
+
+    if (btn1) btn1.disabled = State.tokens < chest.price;
+    if (btn10) btn10.disabled = State.tokens < chest.price10;
   },
 
   updateMissionDisplay() {
@@ -776,7 +817,8 @@ const UI = {
   // Perform Gacha Logic
   handleGacha(pullsCount) {
     SoundEffect.playClick();
-    const cost = pullsCount * 100;
+    const chest = chestTypes[this.selectedChest];
+    const cost = pullsCount === 10 ? chest.price10 : chest.price;
 
     if (State.tokens < cost) {
       this.showToast('Token tidak mencukupi untuk melakukan gacha!', 'warning');
@@ -795,14 +837,15 @@ const UI = {
     for (let i = 0; i < pullsCount; i++) {
       const rand = Math.random() * 100;
       let rarity = 'biasa';
-      
-      if (rand < 1) { // 1%
+      const rates = chest.rates;
+
+      if (rand < rates.rahasia) {
         rarity = 'rahasia';
-      } else if (rand < 11) { // 10%
+      } else if (rand < rates.rahasia + rates.legendaris) {
         rarity = 'legendaris';
-      } else if (rand < 35) { // 24%
+      } else if (rand < rates.rahasia + rates.legendaris + rates.langka) {
         rarity = 'langka';
-      } else { // 65%
+      } else {
         rarity = 'biasa';
       }
 
@@ -816,10 +859,10 @@ const UI = {
     }
 
     // Start gacha animation sequence
-    this.runGachaAnimation(pulledList, highestRarity);
+    this.runGachaAnimation(pulledList, highestRarity, this.selectedChest);
   },
 
-  runGachaAnimation(pulledList, highestRarity) {
+  runGachaAnimation(pulledList, highestRarity, chestId) {
     const overlay = document.getElementById('gacha-animation-overlay');
     const portal = document.getElementById('gacha-portal');
     const egg = document.getElementById('gacha-egg');
@@ -837,6 +880,8 @@ const UI = {
     const chest = egg;
     chest.dataset.rarity = highestRarity;
 
+    const chest = chestTypes[chestId] || chestTypes.biasa;
+
     // Apply color glow to portal matching highest rarity
     const colors = {
       biasa: 'rgba(16, 185, 129, 0.4)',
@@ -850,6 +895,7 @@ const UI = {
     this.gachaQueue = pulledList;
     this.eggShakeCount = 0;
     this.isEggPopped = false;
+    instruction.textContent = `Membuka ${chest.label.toLowerCase()}...`;
   },
 
   shakeEgg() {
@@ -1126,8 +1172,26 @@ const UI = {
     });
   },
 
-  renderOddsInfo() {
-    // Fill odds in standard elements
+  renderChestInfo() {
+    const container = document.getElementById('rarity-pills');
+    if (!container) return;
+
+    const chest = chestTypes[this.selectedChest] || chestTypes.biasa;
+    const rows = [
+      { rarity: 'biasa', label: 'Biasa', percent: chest.rates.biasa },
+      { rarity: 'langka', label: 'Langka', percent: chest.rates.langka },
+      { rarity: 'legendaris', label: 'Legendaris', percent: chest.rates.legendaris },
+      { rarity: 'rahasia', label: 'Rahasia', percent: chest.rates.rahasia }
+    ];
+
+    container.innerHTML = rows.map(item => `
+      <div class="rarity-pill ${item.rarity}">${this.getRarityIcon(item.rarity)} ${item.label}: ${item.percent}%</div>
+    `).join('');
+  },
+
+  getRarityIcon(rarity) {
+    const icons = { biasa: '🟢', langka: '🔵', legendaris: '🟡', rahasia: '🔴' };
+    return icons[rarity] || '⚪';
   },
 
   showToast(message, type = 'info') {

@@ -73,14 +73,41 @@
               <p id="banner-desc">Panggil kekuatan bintang untuk memanggil hewan legendaris dan rahasia kuno ke dalam dek koleksimu! Setiap pemanggilan memiliki peluang menemukan spesies langka.</p>
               
               <!-- Rarity Odds Info -->
-              <div class="rarity-pills">
-                <div class="rarity-pill biasa">🟢 Biasa: 65%</div>
-                <div class="rarity-pill langka">🔵 Langka: 24%</div>
-                <div class="rarity-pill legendaris">🟡 Legendaris: 10%</div>
-                <div class="rarity-pill rahasia">🔴 Rahasia: 1%</div>
-              </div>
+              <div class="rarity-pills" id="rarity-pills"></div>
             </div>
           </div>
+        </div>
+
+        <div class="chest-selector" id="chest-selector">
+          <button class="chest-option active" data-chest="biasa" type="button">
+            <span class="chest-option-icon">📦</span>
+            <div class="chest-option-body">
+              <strong>Peti Biasa</strong>
+              <p>Semua hewan tersedia dengan peluang standar.</p>
+              <div class="chest-option-rates">
+                <span class="rarity-pill biasa">🟢 Biasa 65%</span>
+                <span class="rarity-pill langka">🔵 Langka 24%</span>
+                <span class="rarity-pill legendaris">🟡 Legendaris 10%</span>
+                <span class="rarity-pill rahasia">🔴 Rahasia 1%</span>
+              </div>
+              <div class="chest-price">1x = 100 🪙 • 10x = 1.000 🪙</div>
+            </div>
+          </button>
+
+          <button class="chest-option" data-chest="elite" type="button">
+            <span class="chest-option-icon">💎</span>
+            <div class="chest-option-body">
+              <strong>Peti Elite</strong>
+              <p>Kesempatan hewan unggulan lebih tinggi dan lebih mudah didapat.</p>
+              <div class="chest-option-rates">
+                <span class="rarity-pill biasa">🟢 Biasa 45%</span>
+                <span class="rarity-pill langka">🔵 Langka 30%</span>
+                <span class="rarity-pill legendaris">🟡 Legendaris 20%</span>
+                <span class="rarity-pill rahasia">🔴 Rahasia 5%</span>
+              </div>
+              <div class="chest-price">1x = 200 🪙 • 10x = 1.500 🪙</div>
+            </div>
+          </button>
         </div>
 
         <div class="mission-card">
@@ -122,14 +149,14 @@
           <button class="btn-gacha btn-gacha-1" id="btn-gacha-1">
             <span>Panggil 1x</span>
             <div class="btn-cost">
-              <span class="coin">🪙</span> 100 Token
+              <span class="coin">🪙</span> <span id="btn-gacha-1-cost">100 Token</span>
             </div>
           </button>
           
           <button class="btn-gacha btn-gacha-10" id="btn-gacha-10">
             <span>Panggil 10x</span>
             <div class="btn-cost">
-              <span class="coin">🪙</span> 1,000 Token
+              <span class="coin">🪙</span> <span id="btn-gacha-10-cost">1,000 Token</span>
             </div>
           </button>
         </div>
