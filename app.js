@@ -36,16 +36,60 @@ const animals = [
   { id: 'pegasus', name: 'Pegasus Angin', emoji: '🐎', rarity: 'rahasia', desc: 'Kuda bersayap putih bersih yang meluncur cepat menembus awan petir.', height: '1.7 m', weight: '400 kg' },
   { id: 'kirin', name: 'Kirin Cahaya', emoji: '🦌', rarity: 'rahasia', desc: 'Makhluk suci yang memancarkan cahaya lembut saat melangkah di atas embun.', height: '2 m', weight: '500 kg' },
   { id: 'leviathan', name: 'Leviathan Laut', emoji: '🐚', rarity: 'rahasia', desc: 'Monster laut purba yang menimbulkan gelombang besar di lautan terdalam.', height: '20 m', weight: '3 ton' },
-  { id: 'fenix', name: 'Fenix Eter', emoji: '🌈', rarity: 'rahasia', desc: 'Burung api yang menyala dengan warna pelangi dan menghidupkan kembali api abadi.', height: '3 m', weight: '90 kg' }
+  { id: 'fenix', name: 'Fenix Eter', emoji: '🌈', rarity: 'rahasia', desc: 'Burung api yang menyala dengan warna pelangi dan menghidupkan kembali api abadi.', height: '3 m', weight: '90 kg' },
+
+  // Tambahan 30 hewan baru (1 Rahasia, 10 Biasa, 10 Langka, 9 Legendaris)
+  { id: 'kucing_laut', name: 'Kucing Laut', emoji: '🐈', rarity: 'biasa', desc: 'Menyukai pantai dan bermain dengan ombak lembut di sekitar karang.', height: '18 cm', weight: '3 kg' },
+  { id: 'sapi_potong', name: 'Sapi Potong', emoji: '🐄', rarity: 'biasa', desc: 'Hewan tenang yang memberi susu hangat dan langkahnya mantap.', height: '1.4 m', weight: '600 kg' },
+  { id: 'marmut', name: 'Marmut Lucu', emoji: '🐹', rarity: 'biasa', desc: 'Berkeliaran di padang rumput sambil mengunyah rumput dengan santai.', height: '20 cm', weight: '1 kg' },
+  { id: 'kadal', name: 'Kadal Hijau', emoji: '🦎', rarity: 'biasa', desc: 'Memanjat dinding dan pohon dengan lincah, mengandalkan warna kulit untuk berkamuflase.', height: '25 cm', weight: '0.2 kg' },
+  { id: 'monyet', name: 'Monyet Belanda', emoji: '🐒', rarity: 'biasa', desc: 'Cerdas dan suka menjelajah hutan dengan ekor panjangnya.', height: '50 cm', weight: '4 kg' },
+  { id: 'sapi_hutan', name: 'Sapi Hutan', emoji: '🐂', rarity: 'biasa', desc: 'Menghadapi rintangan dengan tenaga besar dan mata tajam.', height: '1.6 m', weight: '700 kg' },
+  { id: 'hamster', name: 'Hamster Emas', emoji: '🐹', rarity: 'biasa', desc: 'Mudah beradaptasi dan suka mengisi kandang dengan makanan kecil.', height: '8 cm', weight: '0.1 kg' },
+  { id: 'ikan_koi', name: 'Ikan Koi', emoji: '🐟', rarity: 'biasa', desc: 'Mengambang anggun dengan warna yang hidup seperti lukisan.', height: '35 cm', weight: '2 kg' },
+  { id: 'buaya', name: 'Buaya Sungai', emoji: '🐊', rarity: 'biasa', desc: 'Pemangsa sabar yang menunggu mangsa di tepi sungai.', height: '2.5 m', weight: '250 kg' },
+  { id: 'capybara', name: 'Capybara', emoji: '🦫', rarity: 'biasa', desc: 'Hewan sosial yang paling nyaman di dekat air dan rumput.', height: '60 cm', weight: '50 kg' },
+  { id: 'orangutan', name: 'Orangutan Hutan', emoji: '🦧', rarity: 'langka', desc: 'Berbagi kasih sayang dan kecerdasan tinggi di atas pepohonan.', height: '1.3 m', weight: '70 kg' },
+  { id: 'tapir', name: 'Tapir Sumatra', emoji: '🦛', rarity: 'langka', desc: 'Hewan pemakan buah yang sering terlihat bersembunyi di hutan lebat.', height: '1.8 m', weight: '300 kg' },
+  { id: 'gazelle', name: 'Gazelle Gurun', emoji: '🦌', rarity: 'langka', desc: 'Berlari cepat di padang pasir dan sangat lincah saat menghindari bahaya.', height: '90 cm', weight: '45 kg' },
+  { id: 'llama', name: 'Llama Andes', emoji: '🦙', rarity: 'langka', desc: 'Mampu membawa beban ringan sambil menjaga suasana damai di pegunungan.', height: '1.1 m', weight: '60 kg' },
+  { id: 'narwhal', name: 'Narwhal Laut', emoji: '🐋', rarity: 'langka', desc: 'Singa laut dari kutub utara dengan taring berkilauan.', height: '4.5 m', weight: '1.6 ton' },
+  { id: 'okapi', name: 'Okapi Hutan', emoji: '🦓', rarity: 'langka', desc: 'Warna unik yang menjadikannya sangat sulit terlihat di bawah naungan hutan.', height: '2 m', weight: '300 kg' },
+  { id: 'eland', name: 'Eland Afrika', emoji: '🦬', rarity: 'langka', desc: 'Hewan besar yang bergerak tenang di sabana luas.', height: '1.6 m', weight: '900 kg' },
+  { id: 'pika', name: 'Pika Gunung', emoji: '🐭', rarity: 'langka', desc: 'Sangat vokal dan menjaga sarang di sela batu pegunungan.', height: '20 cm', weight: '0.2 kg' },
+  { id: 'walrus', name: 'Walrus Kutub', emoji: '🐳', rarity: 'langka', desc: 'Memiliki taring besar dan sering berbaring di es salju.', height: '3 m', weight: '1.2 ton' },
+  { id: 'lemur', name: 'Lemur Hutan', emoji: '🦝', rarity: 'langka', desc: 'Primata khas Madagaskar yang aktif di waktu senja.', height: '40 cm', weight: '2.5 kg' },
+  { id: 'basilisk', name: 'Basilisk Batu', emoji: '🦎', rarity: 'legendaris', desc: 'Makhluk purba yang berjalan di atas batu dengan raungan mengerikan.', height: '2 m', weight: '120 kg' },
+  { id: 'hydra', name: 'Hydra Berbisa', emoji: '🐍', rarity: 'legendaris', desc: 'Naga multi-kepala yang menakutkan dan tak pernah berhenti berkembang.', height: '6 m', weight: '400 kg' },
+  { id: 'manticore', name: 'Manticore Emas', emoji: '🦁', rarity: 'legendaris', desc: 'Kombinasi singa, serigala, dan naga yang gagah dan mematikan.', height: '2.5 m', weight: '180 kg' },
+  { id: 'wyvern', name: 'Wyvern Langit', emoji: '🐉', rarity: 'legendaris', desc: 'Naga bersayap yang melintas di atas awan dan memanggil badai.', height: '4 m', weight: '220 kg' },
+  { id: 'minotaur', name: 'Minotaur Hutan', emoji: '🐮', rarity: 'legendaris', desc: 'Makhluk kuat dengan tanduk yang melindungi hutan dari ancaman.', height: '2.2 m', weight: '800 kg' },
+  { id: 'sphinx', name: 'Sphinx Batu', emoji: '🦁', rarity: 'legendaris', desc: 'Raja misterius yang menjaga rahasia kuno dengan senyum dingin.', height: '2.5 m', weight: '500 kg' },
+  { id: 'cerberus', name: 'Cerberus Naga', emoji: '🐕', rarity: 'legendaris', desc: 'Anjing penjaga neraka dengan tiga kepala yang menyalak bergantian.', height: '1.8 m', weight: '320 kg' },
+  { id: 'kraken', name: 'Kraken Samudra', emoji: '🐙', rarity: 'legendaris', desc: 'Monster laut raksasa yang mengangkat ombak dari dasar lautan.', height: '12 m', weight: '2 ton' },
+  { id: 'siren', name: 'Siren Laut', emoji: '🧜', rarity: 'legendaris', desc: 'Makhluk cantik yang memikat kapal dengan nyanyian yang memabukkan.', height: '1.8 m', weight: '90 kg' },
+  { id: 'aether_serpent', name: 'Aether Serpent', emoji: '🌀', rarity: 'rahasia', desc: 'Ular cahaya yang melilit ruang dan waktu dengan aura berpendar.', height: '8 m', weight: '150 kg' }
 ];
 
 // Sound Synthesizer Utility using Web Audio API
 const SoundEffect = {
   ctx: null,
+  enabled: false,
   
   init() {
+    if (!this.enabled) return;
     if (!this.ctx) {
       this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  },
+
+  setEnabled(enabled) {
+    this.enabled = enabled;
+    if (!enabled && this.ctx && this.ctx.state === 'running') {
+      this.ctx.suspend();
     }
   },
 
@@ -319,19 +363,37 @@ const State = {
     return false;
   },
 
-  advanceMissionProgress() {
-    this.gachaMissionProgress += 1;
+  advanceMissionProgress(pullsCount = 1) {
+    const newProgress = this.gachaMissionProgress + pullsCount;
+    const rewards = Math.floor(newProgress / this.gachaMissionGoal);
+    this.gachaMissionProgress = newProgress % this.gachaMissionGoal;
 
-    if (this.gachaMissionProgress >= this.gachaMissionGoal) {
-      this.tokens += this.gachaMissionReward;
+    if (rewards > 0) {
+      this.tokens += rewards * this.gachaMissionReward;
       this.saveTokens();
       UI.updateTokenDisplay(true);
-      this.gachaMissionProgress = 0;
-      UI.showToast(`Misi tercapai! Kamu mendapat +${this.gachaMissionReward} Token.`, 'success');
+      UI.showToast(`Misi tercapai! Kamu mendapat +${rewards * this.gachaMissionReward} Token.`, 'success');
     }
 
     this.saveMissionProgress();
     UI.updateMissionDisplay();
+  },
+
+  exchangeDuplicateAnimal(animalId) {
+    const count = this.collection[animalId] || 0;
+    if (count < 5) return false;
+
+    this.collection[animalId] = count - 5;
+    if (this.collection[animalId] <= 0) {
+      delete this.collection[animalId];
+    }
+
+    this.tokens += 500;
+    this.saveCollection();
+    this.saveTokens();
+    UI.updateTokenDisplay(true);
+    UI.renderCollection();
+    return true;
   },
 
   addAnimalToCollection(animal) {
@@ -386,9 +448,11 @@ const UI = {
   cardsFlippedCount: 0,
   eggShakeCount: 0,
   isEggPopped: false,
+  newlyUnlockedAnimalIds: [],
 
   init() {
     this.setupEventListeners();
+    SoundEffect.setEnabled(false);
     this.updateTokenDisplay(false);
     this.updateMissionDisplay();
     this.updateMusicButtonState(false);
@@ -418,6 +482,7 @@ const UI = {
       musicBtn.addEventListener('click', async () => {
         SoundEffect.playClick();
         const enabled = await Music.toggle();
+        SoundEffect.setEnabled(enabled);
         this.updateMusicButtonState(enabled);
       });
     }
@@ -640,7 +705,7 @@ const UI = {
 
     // Deduct tokens
     State.deductTokens(cost);
-    State.advanceMissionProgress();
+    State.advanceMissionProgress(pullsCount);
 
     // Generate pulled animals
     const pulledList = [];
@@ -759,7 +824,8 @@ const UI = {
     this.cardsFlippedCount = 0;
 
     // Build card elements
-    this.gachaQueue.forEach((animal, index) => {
+    this.gachaQueue.forEach((animal) => {
+      const isNew = !(State.collection[animal.id] || 0);
       // Add to player state
       State.addAnimalToCollection(animal);
 
@@ -777,6 +843,7 @@ const UI = {
             </div>
             <div class="animal-name">${animal.name}</div>
             <div class="animal-rarity-tag">${animal.rarity}</div>
+            ${isNew ? '<div class="new-badge">NEW</div>' : ''}
           </div>
         </div>
       `;
@@ -884,6 +951,7 @@ const UI = {
       card.className = `animal-card ${isUnlocked ? 'unlocked' : 'locked'} ${animal.rarity}`;
       card.innerHTML = `
         ${!isUnlocked ? '<div class="lock-badge">🔒</div>' : ''}
+        ${isUnlocked && this.newlyUnlockedAnimalIds?.includes(animal.id) ? '<div class="new-badge collection">NEW</div>' : ''}
         <div class="animal-avatar-container">
           <span class="animal-emoji">${animal.emoji}</span>
         </div>
@@ -924,6 +992,20 @@ const UI = {
     // Glow outline update
     const glowBox = document.getElementById('modal-animal-glow');
     glowBox.className = `modal-animal-glow ${animal.rarity}`;
+
+    const exchangeBtn = document.getElementById('modal-exchange-button');
+    if (exchangeBtn) {
+      exchangeBtn.style.display = count >= 5 ? 'inline-flex' : 'none';
+      exchangeBtn.onclick = () => {
+        const exchanged = State.exchangeDuplicateAnimal(animal.id);
+        if (exchanged) {
+          this.showToast('Tukar berhasil! Kamu menerima +500 Token.', 'success');
+          this.showAnimalDetails(animal, State.collection[animal.id] || 0);
+        } else {
+          this.showToast('Kamu membutuhkan minimal 5 hewan yang sama untuk ditukar.', 'warning');
+        }
+      };
+    }
 
     document.getElementById('details-modal').classList.add('active');
   },
