@@ -27,7 +27,7 @@ const animals = [
   { id: 'singa_gading', name: 'Singa Gading', emoji: '🦁', rarity: 'legendaris', desc: 'Simbol kepemimpinan dan keberanian yang berwibawa di padang rumput.', height: '1.2 m', weight: '190 kg' },
   { id: 'griffin', name: 'Griffin Langit', emoji: '🦅', rarity: 'legendaris', desc: 'Makhluk agung dengan sayap kuat dan mata tajam yang mengawasi angkasa.', height: '1.5 m', weight: '120 kg' },
   { id: 'drake_es', name: 'Drake Es', emoji: '🐉', rarity: 'legendaris', desc: 'Naga kecil yang menghirup udara dingin dan menyimpan kekuatan es.', height: '2.5 m', weight: '180 kg' },
-  { id: 'ikan_mahkota', name: 'Ikan Mahkota', emoji: '🐠', rarity: 'legendaris', desc: 'Ikan berkilau dengan sisik seperti mahkota kerajaan di dasar laut.', height: '60 cm', weight: '8 kg' },
+  { id: 'ikan_mahkota', name: 'Ikan Mahkota', emoji: '🐠', rarity: 'legendaris', desc: 'Ikan berkilau dengan sisik seperti mahkota kerajaan di dasar laut.', height: '60 cm', weight: '8 kg', seaSeries: true },
 
   // Rahasia (Secret) - 1%
   { id: 'unicorn', name: 'Stardust Unicorn', emoji: '🦄', rarity: 'rahasia', desc: 'Kuda bertanduk mistis yang meninggalkan jejak debu bintang di angkasa.', height: '1.6 m', weight: '350 kg' },
@@ -35,29 +35,29 @@ const animals = [
   { id: 'naga_emas', name: 'Naga Emas Kaisar', emoji: '🐉', rarity: 'rahasia', desc: 'Makhluk mitologi penjaga harta karun suci dengan sisik emas berkilau.', height: '15 m', weight: '2.5 ton' },
   { id: 'pegasus', name: 'Pegasus Angin', emoji: '🐎', rarity: 'rahasia', desc: 'Kuda bersayap putih bersih yang meluncur cepat menembus awan petir.', height: '1.7 m', weight: '400 kg' },
   { id: 'kirin', name: 'Kirin Cahaya', emoji: '🦌', rarity: 'rahasia', desc: 'Makhluk suci yang memancarkan cahaya lembut saat melangkah di atas embun.', height: '2 m', weight: '500 kg' },
-  { id: 'leviathan', name: 'Leviathan Laut', emoji: '🐚', rarity: 'rahasia', desc: 'Monster laut purba yang menimbulkan gelombang besar di lautan terdalam.', height: '20 m', weight: '3 ton' },
+  { id: 'leviathan', name: 'Leviathan Laut', emoji: '🐚', rarity: 'rahasia', desc: 'Monster laut purba yang menimbulkan gelombang besar di lautan terdalam.', height: '20 m', weight: '3 ton', seaSeries: true },
   { id: 'fenix', name: 'Fenix Eter', emoji: '🌈', rarity: 'rahasia', desc: 'Burung api yang menyala dengan warna pelangi dan menghidupkan kembali api abadi.', height: '3 m', weight: '90 kg' },
 
   // Tambahan 30 hewan baru (1 Rahasia, 10 Biasa, 10 Langka, 9 Legendaris)
-  { id: 'kucing_laut', name: 'Kucing Laut', emoji: '🐈', rarity: 'biasa', desc: 'Menyukai pantai dan bermain dengan ombak lembut di sekitar karang.', height: '18 cm', weight: '3 kg' },
+  { id: 'kucing_laut', name: 'Kucing Laut', emoji: '🐈', rarity: 'biasa', desc: 'Menyukai pantai dan bermain dengan ombak lembut di sekitar karang.', height: '18 cm', weight: '3 kg', seaSeries: true },
   { id: 'sapi_potong', name: 'Sapi Potong', emoji: '🐄', rarity: 'biasa', desc: 'Hewan tenang yang memberi susu hangat dan langkahnya mantap.', height: '1.4 m', weight: '600 kg' },
   { id: 'marmut', name: 'Marmut Lucu', emoji: '🐹', rarity: 'biasa', desc: 'Berkeliaran di padang rumput sambil mengunyah rumput dengan santai.', height: '20 cm', weight: '1 kg' },
   { id: 'kadal', name: 'Kadal Hijau', emoji: '🦎', rarity: 'biasa', desc: 'Memanjat dinding dan pohon dengan lincah, mengandalkan warna kulit untuk berkamuflase.', height: '25 cm', weight: '0.2 kg' },
   { id: 'monyet', name: 'Monyet Belanda', emoji: '🐒', rarity: 'biasa', desc: 'Cerdas dan suka menjelajah hutan dengan ekor panjangnya.', height: '50 cm', weight: '4 kg' },
   { id: 'sapi_hutan', name: 'Sapi Hutan', emoji: '🐂', rarity: 'biasa', desc: 'Menghadapi rintangan dengan tenaga besar dan mata tajam.', height: '1.6 m', weight: '700 kg' },
   { id: 'hamster', name: 'Hamster Emas', emoji: '🐹', rarity: 'biasa', desc: 'Mudah beradaptasi dan suka mengisi kandang dengan makanan kecil.', height: '8 cm', weight: '0.1 kg' },
-  { id: 'ikan_koi', name: 'Ikan Koi', emoji: '🐟', rarity: 'biasa', desc: 'Mengambang anggun dengan warna yang hidup seperti lukisan.', height: '35 cm', weight: '2 kg' },
-  { id: 'buaya', name: 'Buaya Sungai', emoji: '🐊', rarity: 'biasa', desc: 'Pemangsa sabar yang menunggu mangsa di tepi sungai.', height: '2.5 m', weight: '250 kg' },
+  { id: 'ikan_koi', name: 'Ikan Koi', emoji: '🐟', rarity: 'biasa', desc: 'Mengambang anggun dengan warna yang hidup seperti lukisan.', height: '35 cm', weight: '2 kg', seaSeries: true },
+  { id: 'buaya', name: 'Buaya Sungai', emoji: '🐊', rarity: 'biasa', desc: 'Pemangsa sabar yang menunggu mangsa di tepi sungai.', height: '2.5 m', weight: '250 kg', seaSeries: true },
   { id: 'capybara', name: 'Capybara', emoji: '🦫', rarity: 'biasa', desc: 'Hewan sosial yang paling nyaman di dekat air dan rumput.', height: '60 cm', weight: '50 kg' },
   { id: 'orangutan', name: 'Orangutan Hutan', emoji: '🦧', rarity: 'langka', desc: 'Berbagi kasih sayang dan kecerdasan tinggi di atas pepohonan.', height: '1.3 m', weight: '70 kg' },
   { id: 'tapir', name: 'Tapir Sumatra', emoji: '🦛', rarity: 'langka', desc: 'Hewan pemakan buah yang sering terlihat bersembunyi di hutan lebat.', height: '1.8 m', weight: '300 kg' },
   { id: 'gazelle', name: 'Gazelle Gurun', emoji: '🦌', rarity: 'langka', desc: 'Berlari cepat di padang pasir dan sangat lincah saat menghindari bahaya.', height: '90 cm', weight: '45 kg' },
   { id: 'llama', name: 'Llama Andes', emoji: '🦙', rarity: 'langka', desc: 'Mampu membawa beban ringan sambil menjaga suasana damai di pegunungan.', height: '1.1 m', weight: '60 kg' },
-  { id: 'narwhal', name: 'Narwhal Laut', emoji: '🐋', rarity: 'langka', desc: 'Singa laut dari kutub utara dengan taring berkilauan.', height: '4.5 m', weight: '1.6 ton' },
+  { id: 'narwhal', name: 'Narwhal Laut', emoji: '🐋', rarity: 'langka', desc: 'Singa laut dari kutub utara dengan taring berkilauan.', height: '4.5 m', weight: '1.6 ton', seaSeries: true },
   { id: 'okapi', name: 'Okapi Hutan', emoji: '🦓', rarity: 'langka', desc: 'Warna unik yang menjadikannya sangat sulit terlihat di bawah naungan hutan.', height: '2 m', weight: '300 kg' },
   { id: 'eland', name: 'Eland Afrika', emoji: '🦬', rarity: 'langka', desc: 'Hewan besar yang bergerak tenang di sabana luas.', height: '1.6 m', weight: '900 kg' },
   { id: 'pika', name: 'Pika Gunung', emoji: '🐭', rarity: 'langka', desc: 'Sangat vokal dan menjaga sarang di sela batu pegunungan.', height: '20 cm', weight: '0.2 kg' },
-  { id: 'walrus', name: 'Walrus Kutub', emoji: '🐳', rarity: 'langka', desc: 'Memiliki taring besar dan sering berbaring di es salju.', height: '3 m', weight: '1.2 ton' },
+  { id: 'walrus', name: 'Walrus Kutub', emoji: '🐳', rarity: 'langka', desc: 'Memiliki taring besar dan sering berbaring di es salju.', height: '3 m', weight: '1.2 ton', seaSeries: true },
   { id: 'lemur', name: 'Lemur Hutan', emoji: '🦝', rarity: 'langka', desc: 'Primata khas Madagaskar yang aktif di waktu senja.', height: '40 cm', weight: '2.5 kg' },
   { id: 'basilisk', name: 'Basilisk Batu', emoji: '🦎', rarity: 'legendaris', desc: 'Makhluk purba yang berjalan di atas batu dengan raungan mengerikan.', height: '2 m', weight: '120 kg' },
   { id: 'hydra', name: 'Hydra Berbisa', emoji: '🐍', rarity: 'legendaris', desc: 'Naga multi-kepala yang menakutkan dan tak pernah berhenti berkembang.', height: '6 m', weight: '400 kg' },
@@ -66,8 +66,8 @@ const animals = [
   { id: 'minotaur', name: 'Minotaur Hutan', emoji: '🐮', rarity: 'legendaris', desc: 'Makhluk kuat dengan tanduk yang melindungi hutan dari ancaman.', height: '2.2 m', weight: '800 kg' },
   { id: 'sphinx', name: 'Sphinx Batu', emoji: '🦁', rarity: 'legendaris', desc: 'Raja misterius yang menjaga rahasia kuno dengan senyum dingin.', height: '2.5 m', weight: '500 kg' },
   { id: 'cerberus', name: 'Cerberus Naga', emoji: '🐕', rarity: 'legendaris', desc: 'Anjing penjaga neraka dengan tiga kepala yang menyalak bergantian.', height: '1.8 m', weight: '320 kg' },
-  { id: 'kraken', name: 'Kraken Samudra', emoji: '🐙', rarity: 'legendaris', desc: 'Monster laut raksasa yang mengangkat ombak dari dasar lautan.', height: '12 m', weight: '2 ton' },
-  { id: 'siren', name: 'Siren Laut', emoji: '🧜', rarity: 'legendaris', desc: 'Makhluk cantik yang memikat kapal dengan nyanyian yang memabukkan.', height: '1.8 m', weight: '90 kg' },
+  { id: 'kraken', name: 'Kraken Samudra', emoji: '🐙', rarity: 'legendaris', desc: 'Monster laut raksasa yang mengangkat ombak dari dasar lautan.', height: '12 m', weight: '2 ton', seaSeries: true },
+  { id: 'siren', name: 'Siren Laut', emoji: '🧜', rarity: 'legendaris', desc: 'Makhluk cantik yang memikat kapal dengan nyanyian yang memabukkan.', height: '1.8 m', weight: '90 kg', seaSeries: true },
   { id: 'aether_serpent', name: 'Aether Serpent', emoji: '🌀', rarity: 'rahasia', desc: 'Ular cahaya yang melilit ruang dan waktu dengan aura berpendar.', height: '8 m', weight: '150 kg' }
 ];
 
@@ -635,6 +635,7 @@ const State = {
 const UI = {
   currentTab: 'gacha',
   currentFilter: 'all',
+  currentAlbum: 'all',
   selectedChest: 'biasa',
   gachaQueue: [],
   cardsFlippedCount: 0,
@@ -701,6 +702,16 @@ const UI = {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         this.currentFilter = e.currentTarget.dataset.filter;
+        this.renderCollection();
+      });
+    });
+
+    document.querySelectorAll('.album-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        SoundEffect.playClick();
+        document.querySelectorAll('.album-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        this.currentAlbum = e.currentTarget.dataset.album;
         this.renderCollection();
       });
     });
@@ -1189,6 +1200,7 @@ const UI = {
     const sortedAnimals = [...animals].sort((a, b) => rarityOrder[a.rarity] - rarityOrder[b.rarity]);
 
     let unlockedCount = 0;
+    let visibleCount = 0;
 
     sortedAnimals.forEach(animal => {
       const count = State.collection[animal.id] || 0;
@@ -1201,6 +1213,15 @@ const UI = {
         return;
       }
 
+      if (this.currentAlbum === 'sea' && !animal.seaSeries) {
+        return;
+      }
+
+      if (this.currentAlbum === 'main' && animal.seaSeries) {
+        return;
+      }
+
+      visibleCount += 1;
       const currentStar = State.starUpgradeProgress[animal.id] || 1;
       const starLabel = currentStar >= 3 ? '⭐⭐⭐' : currentStar === 2 ? '⭐⭐' : '';
 
@@ -1224,6 +1245,17 @@ const UI = {
 
       grid.appendChild(card);
     });
+
+    if (visibleCount === 0 && this.currentAlbum === 'sea') {
+      const emptyState = document.createElement('div');
+      emptyState.className = 'collection-empty-state';
+      emptyState.innerHTML = `
+        <div class="empty-state-icon">🌊</div>
+        <h3>Sea Series Coming Soon</h3>
+        <p>Album laut, ikan misterius, dan makhluk samudra sedang dipersiapkan untuk koleksi berikutnya.</p>
+      `;
+      grid.appendChild(emptyState);
+    }
 
     // Update statistics
     const statsEl = document.getElementById('collection-stats');

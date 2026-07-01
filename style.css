@@ -942,10 +942,60 @@ header {
 .filter-btn[data-filter="legendaris"].active { background: rgba(217, 119, 6, 0.25); border-color: var(--rarity-legendaris); color: #fde047; }
 .filter-btn[data-filter="rahasia"].active { background: rgba(236, 72, 153, 0.25); border-color: var(--rarity-rahasia); color: #fbcfe8; }
 
+.album-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.album-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.album-btn.active {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(34, 211, 238, 0.2));
+  border-color: rgba(125, 211, 252, 0.5);
+  color: #e0f2fe;
+}
+
 .collection-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
+}
+
+.collection-empty-state {
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(125, 211, 252, 0.25);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.collection-empty-state .empty-state-icon {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.collection-empty-state h3 {
+  margin: 0 0 6px;
+  color: var(--text-main);
+}
+
+.collection-empty-state p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Card Styling */

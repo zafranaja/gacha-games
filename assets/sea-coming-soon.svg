@@ -1,0 +1,48 @@
+<svg width="1400" height="700" viewBox="0 0 1400 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="700" rx="32" fill="#05131f"/>
+  <rect y="0" width="1400" height="700" fill="url(#sky)"/>
+  <path d="M0 470C160 420 320 400 480 430C640 460 800 520 960 505C1120 490 1280 430 1400 395V700H0V470Z" fill="#0d2d45"/>
+  <path d="M0 520C140 485 285 485 430 515C575 545 725 590 890 575C1055 560 1215 500 1400 470V700H0V520Z" fill="#123a5c"/>
+  <ellipse cx="1180" cy="140" rx="140" ry="95" fill="#ffffff" fill-opacity="0.08"/>
+  <circle cx="260" cy="170" r="8" fill="#8edbff" fill-opacity="0.75"/>
+  <circle cx="320" cy="110" r="12" fill="#8edbff" fill-opacity="0.5"/>
+  <circle cx="1040" cy="150" r="10" fill="#8edbff" fill-opacity="0.4"/>
+  <circle cx="1120" cy="215" r="7" fill="#8edbff" fill-opacity="0.55"/>
+  <g opacity="0.95">
+    <path d="M320 430C370 388 430 368 500 375C565 380 620 410 675 445C707 463 740 473 775 473C810 473 843 463 875 445C905 428 934 406 969 392C1007 377 1044 376 1080 389" stroke="#59d8ff" stroke-width="5" stroke-linecap="round"/>
+    <path d="M315 430C340 420 370 415 401 416" stroke="#a0efff" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M180 380C230 348 286 332 336 338C280 356 235 378 193 406L180 380Z" fill="#176c8d"/>
+    <path d="M199 374C240 352 283 345 320 351C279 363 240 380 213 402L199 374Z" fill="#3db8de"/>
+    <path d="M242 355C275 343 313 343 347 354C314 361 283 371 255 388L242 355Z" fill="#a3f1ff"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M906 318C962 290 1027 292 1083 323C1041 337 994 350 951 363C923 349 899 337 906 318Z" fill="#2f5078"/>
+    <path d="M932 310C978 300 1030 305 1075 324C1037 333 995 344 961 357C944 343 934 330 932 310Z" fill="#5f8fef"/>
+    <path d="M1011 302C1040 301 1069 304 1098 314C1068 319 1040 325 1019 337C1008 325 1004 311 1011 302Z" fill="#cfeaff"/>
+  </g>
+  <g opacity="0.9">
+    <path d="M1000 520C1038 482 1093 468 1147 475C1110 487 1074 505 1041 531L1000 520Z" fill="#0f4a6b"/>
+    <path d="M1038 505C1070 482 1111 476 1148 482C1112 491 1078 507 1045 531L1038 505Z" fill="#2c7fb3"/>
+  </g>
+  <rect x="180" y="120" width="1040" height="140" rx="24" fill="#041421" fill-opacity="0.7" stroke="#4fb6ff" stroke-opacity="0.28"/>
+  <text x="220" y="190" fill="#f3fbff" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">World Animal Card</text>
+  <text x="220" y="235" fill="#74d4ff" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">Sea Series · Coming Soon</text>
+  <text x="220" y="272" fill="#bde8ff" font-family="Arial, Helvetica, sans-serif" font-size="20" opacity="0.9">Ikan, makhluk laut, dan misteri samudra sedang menunggu untuk dibuka.</text>
+  <defs>
+    <linearGradient id="sky" x1="700" y1="0" x2="700" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07263e"/>
+      <stop offset="1" stop-color="#120f3a"/>
+    </linearGradient>
+    <filter id="shadow" x="160" y="300" width="960" height="90" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="4"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+</svg>
