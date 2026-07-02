@@ -71,32 +71,6 @@ const animals = [
   { id: 'aether_serpent', name: 'Aether Serpent', emoji: '🌀', rarity: 'rahasia', desc: 'Ular cahaya yang melilit ruang dan waktu dengan aura berpendar.', height: '8 m', weight: '150 kg' }
 ];
 
-const seaSeriesAnimals = [
-  { id: 'ikan_glow', name: 'Ikan Glow', emoji: '🐠', rarity: 'biasa', desc: 'Memancarkan cahaya lembut seperti bintang kecil di kedalaman laut.', height: '20 cm', weight: '0.8 kg', seaSeries: true },
-  { id: 'squid_mirror', name: 'Squid Cermin', emoji: '🦑', rarity: 'biasa', desc: 'Mengubah warna tubuhnya seperti cermin air yang bergerak.', height: '30 cm', weight: '1.2 kg', seaSeries: true },
-  { id: 'udang_berlian', name: 'Udang Berlian', emoji: '🦐', rarity: 'biasa', desc: 'Kulitnya bersinar seperti permata di dasar laut.', height: '12 cm', weight: '0.3 kg', seaSeries: true },
-  { id: 'penyu_hijau', name: 'Penyu Hijau', emoji: '🐢', rarity: 'biasa', desc: 'Menjelajah samudra dengan tenang dan penuh kebijaksanaan.', height: '1.2 m', weight: '120 kg', seaSeries: true },
-  { id: 'belut_laut', name: 'Belut Laut', emoji: '🐍', rarity: 'biasa', desc: 'Berenang dengan gerakan halus di sela karang dan rumput laut.', height: '70 cm', weight: '4 kg', seaSeries: true },
-  { id: 'kuda_laut', name: 'Kuda Laut', emoji: '🐠', rarity: 'biasa', desc: 'Makhluk kecil yang menyesuaikan warna tubuhnya dengan karang.', height: '15 cm', weight: '0.1 kg', seaSeries: true },
-  { id: 'teripang_perm', name: 'Teripang Permata', emoji: '🫧', rarity: 'biasa', desc: 'Memiliki tekstur lembut dan warna yang memukau di kedalaman.', height: '25 cm', weight: '2 kg', seaSeries: true },
-  { id: 'lobster_aurora', name: 'Lobster Aurora', emoji: '🦞', rarity: 'biasa', desc: 'Sangkar cangkangnya berkilau seperti aurora di dasar laut.', height: '35 cm', weight: '2.5 kg', seaSeries: true },
-  { id: 'ikan_pari_aura', name: 'Ikan Pari Aura', emoji: '🪼', rarity: 'langka', desc: 'Gerakannya elegan dan memantulkan cahaya biru saat berenang.', height: '1.5 m', weight: '35 kg', seaSeries: true },
-  { id: 'jelly_nova', name: 'Jelly Nova', emoji: '💧', rarity: 'langka', desc: 'Berkembang cahaya di dalam air seperti bintang jatuh.', height: '40 cm', weight: '1 kg', seaSeries: true },
-  { id: 'ikan_pedang', name: 'Ikan Pedang', emoji: '🐟', rarity: 'langka', desc: 'Tajam dan cepat, menembus air dengan garis tubuh yang bersinar.', height: '2 m', weight: '60 kg', seaSeries: true },
-  { id: 'clown_cemerlang', name: 'Clownfish Cemerlang', emoji: '🐠', rarity: 'langka', desc: 'Berwarna cerah dan hidup berdampingan dengan anemon laut.', height: '12 cm', weight: '0.2 kg', seaSeries: true },
-  { id: 'octopus_ilusi', name: 'Octopus Ilusi', emoji: '🐙', rarity: 'langka', desc: 'Mengubah bentuk tubuhnya untuk mengelabui predator dan mangsa.', height: '1 m', weight: '10 kg', seaSeries: true },
-  { id: 'dolphin_lumen', name: 'Dolphin Lumen', emoji: '🐬', rarity: 'langka', desc: 'Cerdas dan ceria, menyalurkan gelombang cahaya saat berlompat.', height: '2.5 m', weight: '120 kg', seaSeries: true },
-  { id: 'paus_bintang', name: 'Paus Bintang', emoji: '🐋', rarity: 'langka', desc: 'Harmoni suaranya terasa seperti nyanyian galaksi di bawah laut.', height: '15 m', weight: '40 ton', seaSeries: true },
-  { id: 'naga_karang', name: 'Naga Karang', emoji: '🐉', rarity: 'legendaris', desc: 'Makhluk laut purba yang menjaga terumbu sebagai istananya.', height: '6 m', weight: '500 kg', seaSeries: true },
-  { id: 'kraken_samudra', name: 'Kraken Samudra', emoji: '🌊', rarity: 'legendaris', desc: 'Monster laut raksasa yang melingkupi ombak dengan kekuatan tua.', height: '12 m', weight: '2 ton', seaSeries: true },
-  { id: 'putri_duyung', name: 'Putri Duyung', emoji: '🧜‍♀️', rarity: 'legendaris', desc: 'Makhluk cantik yang memimpin nyanyian laut di kedalaman.', height: '1.8 m', weight: '70 kg', seaSeries: true },
-  { id: 'raksasa_terumbu', name: 'Raksasa Terumbu', emoji: '🪸', rarity: 'legendaris', desc: 'Berbentuk seperti pulau karang hidup yang bergerak perlahan.', height: '8 m', weight: '1.2 ton', seaSeries: true },
-  { id: 'wyrm_dasar', name: 'Wyrm Dasar Laut', emoji: '🐍', rarity: 'legendaris', desc: 'Naga tua yang bersembunyi di palung dengan mata menyala.', height: '7 m', weight: '600 kg', seaSeries: true },
-  { id: 'phoenix_ombak', name: 'Phoenix Ombak', emoji: '🔥', rarity: 'rahasia', desc: 'Burung api laut yang muncul dari semburan air panas.', height: '3 m', weight: '90 kg', seaSeries: true },
-  { id: 'malaikat_laut', name: 'Malaikat Laut Dalam', emoji: '✨', rarity: 'rahasia', desc: 'Wujud cahaya suci yang menjaga rahasia kedalaman samudra.', height: '2.5 m', weight: '80 kg', seaSeries: true },
-  { id: 'naga_sirip', name: 'Naga Sirip Emas', emoji: '🐉', rarity: 'rahasia', desc: 'Makhluk langka yang mengkilap seperti emas saat menyelam.', height: '10 m', weight: '1.8 ton', seaSeries: true }
-];
-
 const chestTypes = {
   biasa: {
     label: 'Peti Biasa',
@@ -109,12 +83,6 @@ const chestTypes = {
     price: 200,
     price10: 1500,
     rates: { biasa: 45, langka: 30, legendaris: 20, rahasia: 5 }
-  },
-  sea: {
-    label: 'Peti Sea',
-    price: 150,
-    price10: 2000,
-    rates: { biasa: 30, langka: 35, legendaris: 25, rahasia: 10 }
   }
 };
 
@@ -1018,7 +986,7 @@ const UI = {
         rarity = 'biasa';
       }
 
-      const pool = this.selectedChest === 'sea' ? seaSeriesAnimals : animals.filter(animal => !animal.seaSeries);
+      const pool = animals.filter(animal => !animal.seaSeries);
       const availableAnimals = pool.filter(a => a.rarity === rarity);
       const chosen = availableAnimals.length > 0
         ? availableAnimals[Math.floor(Math.random() * availableAnimals.length)]
@@ -1233,13 +1201,8 @@ const UI = {
     // Sort animals: Rahasia -> Legendaris -> Langka -> Biasa
     const rarityOrder = { rahasia: 0, legendaris: 1, langka: 2, biasa: 3 };
     const sortedAnimals = [...animals]
-      .filter(animal => this.currentAlbum !== 'sea' ? !animal.seaSeries : true)
+      .filter(animal => !animal.seaSeries)
       .sort((a, b) => rarityOrder[a.rarity] - rarityOrder[b.rarity]);
-
-    if (this.currentAlbum === 'sea') {
-      const seaSorted = [...seaSeriesAnimals].sort((a, b) => rarityOrder[a.rarity] - rarityOrder[b.rarity]);
-      seaSorted.forEach(animal => sortedAnimals.push(animal));
-    }
 
     let unlockedCount = 0;
     let visibleCount = 0;
@@ -1252,10 +1215,6 @@ const UI = {
 
       // Filter check
       if (this.currentFilter !== 'all' && animal.rarity !== this.currentFilter) {
-        return;
-      }
-
-      if (this.currentAlbum === 'sea' && !animal.seaSeries) {
         return;
       }
 
@@ -1288,21 +1247,11 @@ const UI = {
       grid.appendChild(card);
     });
 
-    if (visibleCount === 0 && this.currentAlbum === 'sea') {
-      const emptyState = document.createElement('div');
-      emptyState.className = 'collection-empty-state';
-      emptyState.innerHTML = `
-        <div class="empty-state-icon">🌊</div>
-        <h3>Sea Series Coming Soon</h3>
-        <p>Album laut, ikan misterius, dan makhluk samudra sedang dipersiapkan untuk koleksi berikutnya.</p>
-      `;
-      grid.appendChild(emptyState);
-    }
-
     // Update statistics
     const statsEl = document.getElementById('collection-stats');
     if (statsEl) {
-      statsEl.innerHTML = `Koleksi Terbuka: <span>${unlockedCount}</span> / ${animals.length} (${Math.round((unlockedCount/animals.length)*100)}%)`;
+      const totalVisibleAnimals = sortedAnimals.length;
+      statsEl.innerHTML = `Koleksi Terbuka: <span>${unlockedCount}</span> / ${totalVisibleAnimals} (${Math.round((unlockedCount/totalVisibleAnimals)*100)}%)`;
     }
   },
 

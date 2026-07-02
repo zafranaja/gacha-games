@@ -1,0 +1,37 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="32" fill="#0E2414"/>
+  <rect y="620" width="1600" height="280" fill="#1D3A22"/>
+  <rect y="560" width="1600" height="80" fill="#2A4F2F"/>
+  <path d="M0 720C180 650 340 640 520 680C700 720 900 760 1100 720C1300 680 1450 620 1600 590V900H0V720Z" fill="#16381D"/>
+  <circle cx="1320" cy="180" r="96" fill="#F7D98D" fill-opacity="0.95"/>
+  <path d="M250 560L180 760H320L250 560Z" fill="#27512F"/>
+  <path d="M250 520L140 760H360L250 520Z" fill="#32643D"/>
+  <path d="M250 490L100 760H400L250 490Z" fill="#3C7647"/>
+  <path d="M560 560L480 760H640L560 560Z" fill="#27512F"/>
+  <path d="M560 520L430 760H690L560 520Z" fill="#32643D"/>
+  <path d="M560 490L390 760H730L560 490Z" fill="#3C7647"/>
+  <path d="M860 580L780 760H940L860 580Z" fill="#27512F"/>
+  <path d="M860 540L720 760H1000L860 540Z" fill="#32643D"/>
+  <path d="M860 500L690 760H1030L860 500Z" fill="#3C7647"/>
+  <path d="M1200 560L1120 760H1280L1200 560Z" fill="#27512F"/>
+  <path d="M1200 520L1060 760H1340L1200 520Z" fill="#32643D"/>
+  <path d="M1200 490L1000 760H1400L1200 490Z" fill="#3C7647"/>
+  <rect x="228" y="690" width="42" height="100" rx="12" fill="#5A3A23"/>
+  <rect x="530" y="690" width="42" height="100" rx="12" fill="#5A3A23"/>
+  <rect x="838" y="690" width="42" height="100" rx="12" fill="#5A3A23"/>
+  <rect x="1178" y="690" width="42" height="100" rx="12" fill="#5A3A23"/>
+  <circle cx="250" cy="460" r="44" fill="#F7D98D"/>
+  <circle cx="560" cy="450" r="38" fill="#F7D98D"/>
+  <circle cx="860" cy="470" r="42" fill="#F7D98D"/>
+  <circle cx="1200" cy="440" r="40" fill="#F7D98D"/>
+  <path d="M250 420C250 380 280 350 320 350C360 350 390 380 390 420V440H250V420Z" fill="#95D17E"/>
+  <path d="M560 400C560 360 590 330 630 330C670 330 700 360 700 400V430H560V400Z" fill="#95D17E"/>
+  <path d="M860 420C860 380 890 350 930 350C970 350 1000 380 1000 420V440H860V420Z" fill="#95D17E"/>
+  <path d="M1200 400C1200 360 1230 330 1270 330C1310 330 1340 360 1340 400V430H1200V400Z" fill="#95D17E"/>
+  <path d="M140 240L212 160L284 240H140Z" fill="#2E6B3B"/>
+  <path d="M1280 254L1360 150L1440 254H1280Z" fill="#2E6B3B"/>
+  <path d="M1320 286L1380 200L1440 286H1320Z" fill="#3F7E4B"/>
+  <path d="M120 200L160 120L200 200H120Z" fill="#3F7E4B"/>
+  <path d="M1320 160L1350 104L1380 160H1320Z" fill="#3F7E4B"/>
+  <path d="M1420 194L1464 130L1508 194H1420Z" fill="#4D944F"/>
+</svg>
